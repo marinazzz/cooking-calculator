@@ -1,0 +1,121 @@
+:root {
+    --color-primary:#3f51b5;
+    --color-secondary:#8C9EFF;
+    --text-primary-on-dark: #fff;
+    --text-secondary-on-light: rgba(0,0,0,.54);
+    --color-components-dark: #303030;
+    --color-components-light: rgba(0,0,0,.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+}
+
+
+/*HEADER*/
+
+.nav {
+    display: flex;
+    justify-content: flex-start;
+    background-color: var(--color-secondary);
+    height: 10rem;
+}
+
+.nav__heading {
+    display: block;
+    font-size: 2.2rem;
+}
+
+/*MAIN*/
+
+.container {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section__main,
+.section__results {
+    background-color: var(--color-components-light);
+    padding: 1.5rem;
+    width: 50%;
+}
+
+.form__item-p {
+    line-height: 2rem;
+}
+
+/*FORM COMPONENTS*/
+
+.input-container {
+    display: flex;
+    margin-bottom: 1.5rem;
+    position: relative;
+    letter-spacing: 0.1rem;
+    line-height: 2.5rem;
+    height: 6rem;
+    width: 100%;
+}
+
+.input-container--inline {
+    display: flex;
+}
+
+.input-container--inline > div:nth-child(2) {
+    margin-left: 6rem;
+  }
+
+.form__input {
+    display: block;
+    font-size: 1.8rem;
+    letter-spacing: 0.2rem;
+    width: inherit;
+}
+
+.form__input--padding {
+    padding: 1rem 0.8rem 0 0.8rem;
+    margin-top: 1rem;
+}
+
+.input-label {
+    position: absolute;
+    left: 0.8rem;
+    bottom: 2.6rem;
+    font-size: 1.4rem;
+    color: var(--color-components-dark);
+}
+
+
+/*Header for ingredients*/
+
+.form__item-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/*Inputs for quantity, type of measurument and ingredient */
+
+.form__item-ul,
+.form__item-content,
+.input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form__item-li {
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+
+/*style for select element*/

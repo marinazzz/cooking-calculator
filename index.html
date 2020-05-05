@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Cooking calculator</title>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <h1 class="nav__heading">Cooking calculator</h1>
+            <img class="logo" src="" alt="" />
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <!-- Main calculator form -->
+            <section class="section__main">
+                <form class="form">
+                    <!-- Header for scale a recipe -->
+                    <div class="form__item">
+                        <div class="form__item-header">
+                            <h2 class="form__item-h2">Scale a Recipe</h2>
+                            <p class="form__item-p">Use Cooking calculator to adjust a recipe quantities to the amount
+                                of servings
+                                you need. Fill out the information below and click Apply calculation to get converted
+                                recipe.</p>
+                        </div>
+                        <!-- Main inputs for recipe title and servings -->
+                        <div class="input-container">
+                            <label for="recipe-name" class="input-label">Recipe name</label>
+                            <input type="text" class="form__input form__input--padding " id="recipe-name" name="originalEnter" />
+                        </div>
+                        <div class="input-container--inline">
+                            <div class="input-container">
+                                <label for="servings-amount" class="input-label">Original recipe servings</label>
+                                <input type="text" class="form__input form__input--padding " id="servings-amount" name="originalEnter" />
+                            </div>
+                            <div class="input-container">
+                                <label for="needs-to-serve" class="input-label">Needs to serve</label>
+                                <input type="text" class="form__input form__input--padding " id="needs-to-serve" name="originalEnter" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Header for ingredients -->
+                    <div class="form__item">
+                        <div class="form__item-header">
+                            <h2 class="form__item-h2"> Ingredients:</h2>
+                            <p class="form__item-p">Enter all ingredients of your original recipe.</p>
+                        </div>
+                        <!-- Inputs for quantity, type of measurument and ingredient -->
+                        <ul class="form__item-ul">
+                            <li class="form__item-li">quantity</li>
+                            <li class="form__item-li">type</li>
+                            <li class="form__item-li">ingredient</li>
+                        </ul>
+                        <div class="form__item-content">
+                            <!-- Quantity -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="quantity" name="originalEnter" />
+                            </div>
+                            <!-- Measurument -->
+                            <div class="input-container">
+                                <select name="measurumentInput" id="measurument">
+                                    <option value="selectMeasurument">Select type</option>
+                                    <optgroup label="Volume">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Milliliters">Milliliters</option>
+                                        <option value="Liter">Liter</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pints">Pints</option>
+                                        <option value="Quarts">Quarts</option>
+                                        <option value="Gallon">Gallon</option>
+                                    </optgroup>
+                                    <optgroup label="Weight">
+                                        <option value="Each">Each</option>
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Grams">Grams</option>
+                                        <option value="Kilogram">Kilogram</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pounds">Pounds</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <!-- Ingredient -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="ingredient" name="originalEnter" />
+                            </div>
+                        </div>
+                        <!-- Inputs for quantity, type of measurument and ingredient -->
+                        <div class="form__item-content">
+                            <!-- Quantity -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="quantity" name="originalEnter" />
+                            </div>
+                            <!-- Measurument -->
+                            <div class="input-container">
+                                <select name="measurumentInput" id="measurument">
+                                    <option value="selectMeasurument">Select type</option>
+                                    <optgroup label="Volume">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Milliliters">Milliliters</option>
+                                        <option value="Liter">Liter</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pints">Pints</option>
+                                        <option value="Quarts">Quarts</option>
+                                        <option value="Gallon">Gallon</option>
+                                    </optgroup>
+                                    <optgroup label="Weight">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Grams">Grams</option>
+                                        <option value="Kilogram">Kilogram</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pounds">Pounds</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <!-- Ingredient -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="ingredient" name="originalEnter" />
+                            </div>
+                        </div>
+                        <!-- Inputs for quantity, type of measurument and ingredient -->
+                        <div class="form__item-content">
+                            <!-- Quantity -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="quantity" name="originalEnter" />
+                            </div>
+                            <!-- Measurument -->
+                            <div class="input-container">
+                                <select name="measurumentInput" id="measurument">
+                                    <option value="selectMeasurument">Select type</option>
+                                    <optgroup label="Volume">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Milliliters">Milliliters</option>
+                                        <option value="Liter">Liter</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pints">Pints</option>
+                                        <option value="Quarts">Quarts</option>
+                                        <option value="Gallon">Gallon</option>
+                                    </optgroup>
+                                    <optgroup label="Weight">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Grams">Grams</option>
+                                        <option value="Kilogram">Kilogram</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pounds">Pounds</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <!-- Ingredient -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="ingredient" name="originalEnter" />
+                            </div>
+                        </div>
+                        <!-- Inputs for quantity, type of measurument and ingredient -->
+                        <div class="form__item-content">
+                            <!-- Quantity -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="quantity" name="originalEnter" />
+                            </div>
+                            <!-- Measurument -->
+                            <div class="input-container">
+                                <select name="measurumentInput" id="measurument">
+                                    <option value="selectMeasurument">Select type</option>
+                                    <optgroup label="Volume">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Milliliters">Milliliters</option>
+                                        <option value="Liter">Liter</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pints">Pints</option>
+                                        <option value="Quarts">Quarts</option>
+                                        <option value="Gallon">Gallon</option>
+                                    </optgroup>
+                                    <optgroup label="Weight">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Grams">Grams</option>
+                                        <option value="Kilogram">Kilogram</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pounds">Pounds</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <!-- Ingredient -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="ingredient" name="originalEnter" />
+                            </div>
+                        </div>
+                        <!-- Inputs for quantity, type of measurument and ingredient -->
+                        <div class="form__item-content">
+                            <!-- Quantity -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="quantity" name="originalEnter" />
+                            </div>
+                            <!-- Measurument -->
+                            <div class="input-container">
+                                <select name="measurumentInput" id="measurument">
+                                    <option value="selectMeasurument">Select type</option>
+                                    <optgroup label="Volume">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Milliliters">Milliliters</option>
+                                        <option value="Liter">Liter</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pints">Pints</option>
+                                        <option value="Quarts">Quarts</option>
+                                        <option value="Gallon">Gallon</option>
+                                    </optgroup>
+                                    <optgroup label="Weight">
+                                        <option value="Cups">Cups</option>
+                                        <option value="Tablespoons">Tablespoons</option>
+                                        <option value="Teaspoons">Teaspoons</option>
+                                        <option value="Grams">Grams</option>
+                                        <option value="Kilogram">Kilogram</option>
+                                        <option value="Ounces">Ounces</option>
+                                        <option value="Pounds">Pounds</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <!-- Ingredient -->
+                            <div class="input-container">
+                                <input type="text" class="form__input" id="ingredient" name="originalEnter" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-btn">
+                        <h4>Add ingredient</h4>
+                        <i class="icon-btn"></i>
+                    </div>
+                    <div class="form__item">
+                        <button type="submit" value="scale" id="submit">Apply calculation</button>
+                        <button type="reset" value="clear" id="clear">Clear</button>
+                    </div>
+                </form>
+            </section>
+            <!-- Section for new converted recipe -->
+            <section class="section__results">
+                <!-- Default section before entering ingredients -->
+                <div class="section__results-default">
+                    <h2 class="section__results-h2"> Entered data result will show
+                        up here</h2>
+                    <div class="results-default__items">
+                        <div class="results-default__item">
+                            <img class="default__item-img" src="" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Converted results will show up on click add ingredient -->
+                <!-- <div class="section__results-converted">
+                    <div class="results-converted__header">
+                        <h2 class="results-converted__h1">Your new Recipe</h2>
+                    </div>
+                    <div class="results-converted__items">
+                    <div class="results-converted__item">
+                        <h3 class="converted__item-h1">Recipe title</h3>
+                        <p class="converted__item-p">Amount of servings</p>
+                        <div class="results-converted__list">
+                            <ul>
+                                <li class="converted-ingredient"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div> -->
+            </section>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
