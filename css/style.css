@@ -3,6 +3,7 @@
     --color-secondary:#8C9EFF;
     --text-primary-on-dark: #fff;
     --text-secondary-on-light: rgba(0,0,0,.54);
+    --color-components-purple: #5870cb;
     --color-components-dark: #303030;
     --color-components-light: rgba(0,0,0,.06);
 }
@@ -18,36 +19,47 @@ html {
 body {
     font-family: 'Nunito', sans-serif;
     font-size: 1.6rem;
+    margin: 0;
 }
 
 
 /*HEADER*/
 
-.nav {
-    display: flex;
-    justify-content: flex-start;
+header {
     background-color: var(--color-secondary);
-    height: 10rem;
 }
 
-.nav__heading {
+header::before {
+    content: '';
     display: block;
-    font-size: 2.2rem;
+    height: 2rem;
+    width: 100%;
+    background-color: var(--color-components-purple);
 }
+
+header::after {
+    content: '';
+    display: block;
+    height: 0.5rem;
+    width: 100%;
+    background-color: var(--color-primary);
+}
+
+.logo {
+    padding-left: 1.5rem;
+    text-shadow: 0 0 0 0.5;
+    letter-spacing: 0.2rem;
+    text-shadow: 2px 2px #3837374f;
+    font-size: 3rem;
+    margin: 0.8rem;
+}
+
 
 /*MAIN*/
-
-.container {
-    display: flex;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
 .section__main,
 .section__results {
     background-color: var(--color-components-light);
     padding: 1.5rem;
-    width: 50%;
 }
 
 .form__item-p {
@@ -115,7 +127,64 @@ body {
 .form__item-li {
     width: 100%;
     flex: 1 1 auto;
+    text-transform: uppercase;
+}
+
+#measurument {
+    width: inherit;
+    padding: 0 1rem;
 }
 
 
-/*style for select element*/
+/*buttons*/
+
+button {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    min-width: 64px;
+    height: 36px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 36px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+}
+
+button#clear {
+    color: white;
+    background-color: var(--color-primary);
+}
+
+button#submit {
+    color: rgb(8, 8, 8);
+    background-color: var(--color-secondary);
+}
+
+div.form__item:nth-child(4) {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-btn > h4:nth-child(2) {
+    display: inline-block;
+    margin-left: 2rem;
+}
+
+.fas {
+    font-size: 2.2rem;
+    color: var(--color-primary);
+}
+
+
