@@ -13,9 +13,11 @@
 
 <body>
     <header>
-        <nav class="nav">
-            <h1 class="logo">Cooking calculator</h1>
-        </nav>
+        <div class="header">
+            <nav class="nav">
+                <h1 class="logo">Cooking calculator</h1>
+            </nav>
+        </div>
     </header>
     <main>
         <div class="container">
@@ -34,16 +36,16 @@
                         <!-- Main inputs for recipe title and servings -->
                         <div class="input-container">
                             <label for="recipe-name" class="input-label">Recipe name</label>
-                            <input type="text" class="form__input form__input--padding " id="recipe-name" name="originalEnter" />
+                            <input type="text" class="form__input form__input--padding main-inputs" id="recipe-name" name="originalEnter" />
                         </div>
                         <div class="input-container--inline">
                             <div class="input-container">
                                 <label for="servings-amount" class="input-label">Original recipe servings</label>
-                                <input type="text" class="form__input form__input--padding " id="servings-amount" name="originalEnter" />
+                                <input type="text" class="form__input form__input--padding main-inputs " id="servings-amount" name="originalEnter" />
                             </div>
                             <div class="input-container">
                                 <label for="needs-to-serve" class="input-label">Needs to serve</label>
-                                <input type="text" class="form__input form__input--padding " id="needs-to-serve" name="originalEnter" />
+                                <input type="text" class="form__input form__input--padding main-inputs" id="needs-to-serve" name="originalEnter" />
                             </div>
                         </div>
                     </div>
@@ -55,17 +57,17 @@
                         </div>
                         <!-- Inputs for quantity, type of measurument and ingredient -->
                         <ul class="form__item-ul">
-                            <li class="form__item-li">quantity</li>
-                            <li class="form__item-li">type</li>
-                            <li class="form__item-li">ingredient</li>
+                            <li class="form__item-li quantity-input">qty.</li>
+                            <li class="form__item-li measurument-input">measure</li>
+                            <li class="form__item-li ingredient-input">ingredient</li>
                         </ul>
                         <div class="form__item-content">
                             <!-- Quantity -->
-                            <div class="input-container">
+                            <div class="input-container quantity-input">
                                 <input type="text" class="form__input" id="quantity" name="originalEnter" />
                             </div>
                             <!-- Measurument -->
-                            <div class="input-container">
+                            <div class="input-container measurument-input">
                                 <select name="measurumentInput" id="measurument">
                                     <option value="selectMeasurument">Select type</option>
                                     <optgroup label="Volume">
@@ -92,18 +94,18 @@
                                 </select>
                             </div>
                             <!-- Ingredient -->
-                            <div class="input-container">
+                            <div class="input-container ingredient-input">
                                 <input type="text" class="form__input" id="ingredient" name="originalEnter" />
                             </div>
                         </div>
                         <!-- Inputs for quantity, type of measurument and ingredient -->
                         <div class="form__item-content">
                             <!-- Quantity -->
-                            <div class="input-container">
+                            <div class="input-container quantity-input">
                                 <input type="text" class="form__input" id="quantity" name="originalEnter" />
                             </div>
                             <!-- Measurument -->
-                            <div class="input-container">
+                            <div class="input-container measurument-input">
                                 <select name="measurumentInput" id="measurument">
                                     <option value="selectMeasurument">Select type</option>
                                     <optgroup label="Volume">
@@ -129,18 +131,18 @@
                                 </select>
                             </div>
                             <!-- Ingredient -->
-                            <div class="input-container">
+                            <div class="input-container ingredient-input">
                                 <input type="text" class="form__input" id="ingredient" name="originalEnter" />
                             </div>
                         </div>
                         <!-- Inputs for quantity, type of measurument and ingredient -->
                         <div class="form__item-content">
                             <!-- Quantity -->
-                            <div class="input-container">
+                            <div class="input-container quantity-input">
                                 <input type="text" class="form__input" id="quantity" name="originalEnter" />
                             </div>
                             <!-- Measurument -->
-                            <div class="input-container">
+                            <div class="input-container measurument-input">
                                 <select name="measurumentInput" id="measurument">
                                     <option value="selectMeasurument">Select type</option>
                                     <optgroup label="Volume">
@@ -166,18 +168,18 @@
                                 </select>
                             </div>
                             <!-- Ingredient -->
-                            <div class="input-container">
+                            <div class="input-container ingredient-input">
                                 <input type="text" class="form__input" id="ingredient" name="originalEnter" />
                             </div>
                         </div>
                         <!-- Inputs for quantity, type of measurument and ingredient -->
                         <div class="form__item-content">
                             <!-- Quantity -->
-                            <div class="input-container">
+                            <div class="input-container quantity-input">
                                 <input type="text" class="form__input" id="quantity" name="originalEnter" />
                             </div>
                             <!-- Measurument -->
-                            <div class="input-container">
+                            <div class="input-container measurument-input">
                                 <select name="measurumentInput" id="measurument">
                                     <option value="selectMeasurument">Select type</option>
                                     <optgroup label="Volume">
@@ -203,18 +205,18 @@
                                 </select>
                             </div>
                             <!-- Ingredient -->
-                            <div class="input-container">
+                            <div class="input-container ingredient-input">
                                 <input type="text" class="form__input" id="ingredient" name="originalEnter" />
                             </div>
                         </div>
                         <!-- Inputs for quantity, type of measurument and ingredient -->
                         <div class="form__item-content">
                             <!-- Quantity -->
-                            <div class="input-container">
+                            <div class="input-container quantity-input">
                                 <input type="text" class="form__input" id="quantity" name="originalEnter" />
                             </div>
                             <!-- Measurument -->
-                            <div class="input-container">
+                            <div class="input-container measurument-input">
                                 <select name="measurumentInput" id="measurument">
                                     <option value="selectMeasurument">Select type</option>
                                     <optgroup label="Volume">
@@ -240,7 +242,7 @@
                                 </select>
                             </div>
                             <!-- Ingredient -->
-                            <div class="input-container">
+                            <div class="input-container ingredient-input">
                                 <input type="text" class="form__input" id="ingredient" name="originalEnter" />
                             </div>
                         </div>

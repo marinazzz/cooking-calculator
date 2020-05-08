@@ -2,7 +2,7 @@
     --color-primary:#3f51b5;
     --color-secondary:#8C9EFF;
     --text-primary-on-dark: #fff;
-    --text-secondary-on-light: rgba(0,0,0,.54);
+    --text-secondary-on-light:rgba(0,0,0,.87);
     --color-components-purple: #5870cb;
     --color-components-dark: #303030;
     --color-components-light: rgba(0,0,0,.06);
@@ -10,6 +10,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
 }
 
 html {
@@ -17,19 +18,26 @@ html {
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
     font-size: 1.6rem;
     margin: 0;
+    background-color: var(--color-components-light);
+    color: var(--text-secondary-on-light);
 }
+
 
 
 /*HEADER*/
 
-header {
+nav {
     background-color: var(--color-secondary);
 }
 
-header::before {
+.header {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.header::before {
     content: '';
     display: block;
     height: 2rem;
@@ -37,7 +45,7 @@ header::before {
     background-color: var(--color-components-purple);
 }
 
-header::after {
+.header::after {
     content: '';
     display: block;
     height: 0.5rem;
@@ -46,19 +54,26 @@ header::after {
 }
 
 .logo {
-    padding-left: 1.5rem;
+    padding: 1.5rem;
     text-shadow: 0 0 0 0.5;
     letter-spacing: 0.2rem;
     text-shadow: 2px 2px #3837374f;
     font-size: 3rem;
-    margin: 0.8rem;
+    margin: 0;
 }
 
 
 /*MAIN*/
+
+.container {
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
 .section__main,
 .section__results {
-    background-color: var(--color-components-light);
+    width: 100%;
     padding: 1.5rem;
 }
 
@@ -78,19 +93,14 @@ header::after {
     width: 100%;
 }
 
-.input-container--inline {
-    display: flex;
-}
 
-.input-container--inline > div:nth-child(2) {
-    margin-left: 6rem;
-  }
 
 .form__input {
     display: block;
     font-size: 1.8rem;
     letter-spacing: 0.2rem;
     width: inherit;
+    padding: 0.5rem;
 }
 
 .form__input--padding {
@@ -104,6 +114,18 @@ header::after {
     bottom: 2.6rem;
     font-size: 1.4rem;
     color: var(--color-components-dark);
+}
+
+.main-inputs {
+    width: 264px;
+    transition: border-bottom-color .18s cubic-bezier(.4,0,.2,1);
+    border: none;
+    background: none;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    font-size: inherit;
+    -webkit-appearance: none;
+    color: var(--color-components-dark);
+
 }
 
 
@@ -130,9 +152,38 @@ header::after {
     text-transform: uppercase;
 }
 
+#quantity,
+#ingredient,
 #measurument {
-    width: inherit;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    border: none;
+    border-radius: 0.4rem;
+}
+
+
+#ingredient,
+.ingredient-input {
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.ingredient-input,
+.measurument-input {
+    padding-left: 1rem;
+}
+
+#measurument {
     padding: 0 1rem;
+}
+
+#measurument,
+.measurument-input {
+    max-width: 14rem;
+}
+
+#quantity,
+.quantity-input {
+    max-width: 6rem;
 }
 
 
@@ -140,19 +191,13 @@ header::after {
 
 button {
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-    min-width: 64px;
-    height: 36px;
-    padding: 0 16px;
+    min-width: 6.5rem;
     border: none;
-    border-radius: 2px;
     outline: none;
-    font-size: 14px;
     font-weight: 500;
-    line-height: 36px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    overflow: hidden;
     vertical-align: middle;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -160,6 +205,11 @@ button {
     user-select: none;
     box-sizing: border-box;
     -webkit-appearance: none;
+    height: 4rem;
+    padding: 0 3rem;
+    font-size: 1.5rem;
+    border-radius: 0.4rem;
+    letter-spacing: 0.2rem;
 }
 
 button#clear {
