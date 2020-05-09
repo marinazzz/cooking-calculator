@@ -5,11 +5,8 @@
         display: flex;
     }
 
-    .container,
-    .nav {
-        flex-direction: row;
-        max-width: 1500px;
-        margin: 0 auto;
+    button {
+        width: auto;
     }
 
 
@@ -17,14 +14,31 @@
 
 @media screen and (min-width: 998px)  {
 
+    .container,
+    .nav {
+        flex-direction: row;
+        max-width: 1500px;
+        margin: 0 auto;
+    }
+
     .section__main,
     .section__results {
         width: 50%;
     }
 
+
+    .form__input-header {
+        width: inherit;
+    }
+
+    .input-container--inline > div:nth-child(2) {
+        padding-left: 3rem;
+    }
+
     .section__results {
         border-left: 0.1rem #8080807d solid;
     }
+
 
 
 }

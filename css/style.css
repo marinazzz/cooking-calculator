@@ -24,6 +24,10 @@ body {
     color: var(--text-secondary-on-light);
 }
 
+h2, h3, h4 {
+    letter-spacing: 0.1rem;
+}
+
 
 
 /*HEADER*/
@@ -54,11 +58,12 @@ nav {
 }
 
 .logo {
-    padding: 1.5rem;
-    text-shadow: 0 0 0 0.5;
-    letter-spacing: 0.2rem;
-    text-shadow: 2px 2px #3837374f;
     font-size: 3rem;
+    font-family: 'Aclonica', sans-serif;
+    text-transform: capitalize;
+    letter-spacing: 0.2rem;
+    color: var(--text-primary-on-dark);
+    padding: 1.5rem;
     margin: 0;
 }
 
@@ -77,8 +82,9 @@ nav {
     padding: 1.5rem;
 }
 
+
 .form__item-p {
-    line-height: 2rem;
+    line-height: 2.5rem;
 }
 
 /*FORM COMPONENTS*/
@@ -93,41 +99,42 @@ nav {
     width: 100%;
 }
 
-
-
 .form__input {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     letter-spacing: 0.2rem;
     width: inherit;
     padding: 0.5rem;
 }
 
-.form__input--padding {
-    padding: 1rem 0.8rem 0 0.8rem;
-    margin-top: 1rem;
-}
-
-.input-label {
-    position: absolute;
-    left: 0.8rem;
-    bottom: 2.6rem;
-    font-size: 1.4rem;
-    color: var(--color-components-dark);
-}
-
-.main-inputs {
-    width: 264px;
+.form__input-header {
+    width: 27rem;
     transition: border-bottom-color .18s cubic-bezier(.4,0,.2,1);
     border: none;
     background: none;
-    border-bottom: 1px solid rgba(0,0,0,.12);
+    border-bottom: 0.1rem solid rgba(0,0,0,.12);
     font-size: inherit;
     -webkit-appearance: none;
     color: var(--color-components-dark);
-
+    padding: 2rem 0.8rem 0 0.8rem;
+    margin-top: 1rem;
 }
 
+.label {
+    position: absolute;
+    bottom: 2.6rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-components-dark);
+}
+
+.form__item-group {
+    padding-top: 2rem;
+}
+
+div.form__item:nth-child(2) > div:nth-child(1) {
+    padding-top: 1rem;
+}
 
 /*Header for ingredients*/
 
@@ -137,7 +144,16 @@ nav {
     margin: 0;
 }
 
+.form__item-li {
+    width: 100%;
+    flex: 1 1 auto;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
 /*Inputs for quantity, type of measurument and ingredient */
+
 
 .form__item-ul,
 .form__item-content,
@@ -146,11 +162,6 @@ nav {
     justify-content: space-between;
 }
 
-.form__item-li {
-    width: 100%;
-    flex: 1 1 auto;
-    text-transform: uppercase;
-}
 
 #quantity,
 #ingredient,
@@ -160,6 +171,15 @@ nav {
     border-radius: 0.4rem;
 }
 
+.ingredient-input {
+    padding-left: 1rem;
+}
+
+#quantity,
+.quantity-input {
+    max-width: 6rem;
+    padding-right: 1rem;
+}
 
 #ingredient,
 .ingredient-input {
@@ -167,49 +187,52 @@ nav {
     flex: 1 1 auto;
 }
 
-.ingredient-input,
-.measurument-input {
-    padding-left: 1rem;
-}
-
-#measurument {
-    padding: 0 1rem;
-}
 
 #measurument,
 .measurument-input {
     max-width: 14rem;
 }
 
-#quantity,
-.quantity-input {
-    max-width: 6rem;
+#measurument {
+    padding: 0 1rem;
+    font-size: inherit;
 }
+
 
 
 /*buttons*/
 
 button {
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-    min-width: 6.5rem;
     border: none;
-    outline: none;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
     text-transform: uppercase;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     box-sizing: border-box;
-    -webkit-appearance: none;
     height: 4rem;
     padding: 0 3rem;
     font-size: 1.5rem;
+    font-weight: bold;
     border-radius: 0.4rem;
     letter-spacing: 0.2rem;
+    width: 20rem;
+}
+
+
+
+#addIngredient {
+    box-shadow: none;
+    background: none;
+    padding: 1.5rem;
+}
+
+.add-btn {
+    padding-bottom: 3rem;
+}
+
+
+button#submit {
+    color: rgb(8, 8, 8);
+    background-color: var(--color-secondary);
+    margin-right: 2rem;
 }
 
 button#clear {
@@ -217,9 +240,12 @@ button#clear {
     background-color: var(--color-primary);
 }
 
-button#submit {
-    color: rgb(8, 8, 8);
-    background-color: var(--color-secondary);
+
+#submit:hover,
+#clear:hover,
+#addIngredient:hover,
+.fas:hover {
+    cursor: pointer;
 }
 
 div.form__item:nth-child(4) {
@@ -227,14 +253,19 @@ div.form__item:nth-child(4) {
     justify-content: space-between;
 }
 
-.add-btn > h4:nth-child(2) {
-    display: inline-block;
-    margin-left: 2rem;
-}
-
 .fas {
     font-size: 2.2rem;
     color: var(--color-primary);
 }
 
+
+/*Default section before entering ingredients*/
+
+.results-default__item {
+    width: auto;
+}
+
+.default__item-img {
+    width: 100%;
+}
 
