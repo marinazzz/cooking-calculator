@@ -8,8 +8,6 @@
     button {
         width: auto;
     }
-
-
 }
 
 @media screen and (min-width: 998px)  {
@@ -26,7 +24,6 @@
         width: 50%;
     }
 
-
     .form__input-header {
         width: inherit;
     }
@@ -38,7 +35,4 @@
     .section__results {
         border-left: 0.1rem #8080807d solid;
     }
-
-
-
 }
