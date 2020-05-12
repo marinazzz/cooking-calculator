@@ -21,82 +21,73 @@
 <body>
   <header>
     <div class="header">
-      <nav class="nav">
-        <h1 class="logo">Cooking calculator</h1>
+      <nav class="header__nav">
+        <h1 class="header__logo">Cooking calculator</h1>
       </nav>
     </div>
   </header>
   <main>
     <div class="container">
       <!-- Main calculator form -->
-      <section class="section__main">
-        <form id="form">
+      <section class="section-main">
+        <form class="section-main__form">
           <!-- Header for calculate a recipe -->
-          <div class="form__item">
-            <div class="form__item-header">
-              <h2 class="form__item-h2">Calculate a Recipe</h2>
-              <p class="form__item-p">Use Cooking calculator to adjust a recipe quantities to the amount
+          <section>
+            <header>
+              <h2>Calculate a Recipe</h2>
+              <p>Use Cooking calculator to adjust a recipe quantities to the amount
                 of servings
                 you need. Fill out the information below and click Calculate to get converted
                 recipe.</p>
-            </div>
+            </header>
             <!-- Main inputs for recipe title and servings -->
             <div class="input-container">
               <label for="recipe-name"
-                     class="label">Recipe name:</label>
+                     class="input-container__label">Recipe name:</label>
               <input type="text"
-                     class="form__input form__input-header"
-                     id="recipe-name"
                      name="originalEnter" />
             </div>
-            <div class="input-container--inline">
+            <div class="input-container--flex">
               <div class="input-container">
-                <label for="servings-amount"
-                       class="label">Original recipe servings:</label>
+                <label for="original-recipe-servings"
+                       class="input-container__label">Original recipe servings:</label>
                 <input type="text"
-                       class="form__input form__input-header "
-                       id="servings-amount"
                        name="originalEnter" />
               </div>
               <div class="input-container">
                 <label for="needs-to-serve"
-                       class="label">Needs to serve:</label>
+                       class="input-container__label">Needs to serve:</label>
                 <input type="text"
-                       class="form__input form__input-header"
-                       id="needs-to-serve"
                        name="originalEnter" />
               </div>
             </div>
-          </div>
+          </section>
           <!-- 1. Remove id attributes from recurring html elements -->
           <!-- Header for ingredients -->
-          <div class="form__item">
+          <section>
             <!-- 2. After adding section tag make this a header tag -->
-            <div class="form__item-header">
-              <h2 class="form__item-h2"> Ingredients</h2>
-              <p class="form__item-p">Enter all ingredients of your original recipe.</p>
-            </div>
+            <header>
+              <h2>Ingredients</h2>
+              <p>Enter all ingredients of your original recipe.</p>
+            </header>
             <!-- 3. Refactor this to use divs instead of ul and li -->
             <!-- Inputs for quantity, type of measurument and ingredient -->
-            <div class="form__item-group">
-              <ul class="form__item-ul">
-                <li class="form__item-li quantity-input">qty.</li>
-                <li class="form__item-li measurument-input">measure</li>
-                <li class="form__item-li ingredient-input">ingredient</li>
-              </ul>
-              <div class="form__item-content">
+            <div class="ingredients-items">
+              <!--<div class="ingredients-items__heading">
+                <div class="ingredients-items__title ingredients-items__title--quantity">Qty.</div>
+                <div class="ingredients-items__title ingredients-items__title--measure">Measure</div>
+                <div class="ingredients-items__title ingredients-items__title--ingredient">Ingredient</div>
+              </div>-->
+              <div class="ingredients-items__inputs">
                 <!-- Quantity -->
-                <div class="input-container--ingredient">
-                  <input type="text"
-                         class="form__input"
-                         id="quantity"
+                <div class="input-container input-container--ingredients input-container--ingredients-quantity">
+                  <input type="text" class="quantity" placeholder="Qty."
                          name="originalEnter" />
                 </div>
                 <!-- Measurument -->
                 <!-- 4. Use more descriptive class names to make it easier to differentitate between various page elements -->
-                <div class="input-container--ingredient measurument-input">
-                  <select name="measurumentInput"
-                          id="measurument">
+                <div class="input-container input-container--ingredients">
+                  <select>
                     <option value="selectMeasurument">Select type</option>
                     <optgroup label="Volume">
                       <option value="Cups">Cups</option>
@@ -122,26 +113,21 @@
                   </select>
                 </div>
                 <!-- Ingredient -->
-                <div class="input-container ingredient-input">
-                  <input type="text"
-                         class="form__input"
-                         id="ingredient"
+                <div class="input-container input-container--ingredients input-container--ingredients-ingredient">
+                  <input type="text" class="ingredient" placeholder="Ingredient"
                          name="originalEnter" />
                 </div>
               </div>
-              <!-- Inputs for quantity, type of measurument and ingredient -->
-              <div class="form__item-content">
+              <div class="ingredients-items__inputs">
                 <!-- Quantity -->
-                <div class="input-container quantity-input">
-                  <input type="text"
-                         class="form__input"
-                         id="quantity"
+                <div class="input-container input-container--ingredients input-container--ingredients-quantity">
+                  <input type="text" class="quantity" placeholder="Qty."
                          name="originalEnter" />
                 </div>
                 <!-- Measurument -->
-                <div class="input-container measurument-input">
-                  <select name="measurumentInput"
-                          id="measurument">
+                <!-- 4. Use more descriptive class names to make it easier to differentitate between various page elements -->
+                <div class="input-container input-container--ingredients">
+                  <select>
                     <option value="selectMeasurument">Select type</option>
                     <optgroup label="Volume">
                       <option value="Cups">Cups</option>
@@ -155,6 +141,7 @@
                       <option value="Gallon">Gallon</option>
                     </optgroup>
                     <optgroup label="Weight">
+                      <option value="Each">Each</option>
                       <option value="Cups">Cups</option>
                       <option value="Tablespoons">Tablespoons</option>
                       <option value="Teaspoons">Teaspoons</option>
@@ -166,26 +153,21 @@
                   </select>
                 </div>
                 <!-- Ingredient -->
-                <div class="input-container ingredient-input">
-                  <input type="text"
-                         class="form__input"
-                         id="ingredient"
+                <div class="input-container input-container--ingredients input-container--ingredients-ingredient">
+                  <input type="text" class="ingredient" placeholder="Ingredient"
                          name="originalEnter" />
                 </div>
               </div>
-              <!-- Inputs for quantity, type of measurument and ingredient -->
-              <div class="form__item-content">
+              <div class="ingredients-items__inputs">
                 <!-- Quantity -->
-                <div class="input-container quantity-input">
-                  <input type="text"
-                         class="form__input"
-                         id="quantity"
+                <div class="input-container input-container--ingredients input-container--ingredients-quantity">
+                  <input type="text" class="quantity" placeholder="Qty."
                          name="originalEnter" />
                 </div>
                 <!-- Measurument -->
-                <div class="input-container measurument-input">
-                  <select name="measurumentInput"
-                          id="measurument">
+                <!-- 4. Use more descriptive class names to make it easier to differentitate between various page elements -->
+                <div class="input-container input-container--ingredients">
+                  <select>
                     <option value="selectMeasurument">Select type</option>
                     <optgroup label="Volume">
                       <option value="Cups">Cups</option>
@@ -199,6 +181,7 @@
                       <option value="Gallon">Gallon</option>
                     </optgroup>
                     <optgroup label="Weight">
+                      <option value="Each">Each</option>
                       <option value="Cups">Cups</option>
                       <option value="Tablespoons">Tablespoons</option>
                       <option value="Teaspoons">Teaspoons</option>
@@ -210,26 +193,21 @@
                   </select>
                 </div>
                 <!-- Ingredient -->
-                <div class="input-container ingredient-input">
-                  <input type="text"
-                         class="form__input"
-                         id="ingredient"
+                <div class="input-container input-container--ingredients input-container--ingredients-ingredient">
+                  <input type="text" class="ingredient" placeholder="Ingredient"
                          name="originalEnter" />
                 </div>
               </div>
-              <!-- Inputs for quantity, type of measurument and ingredient -->
-              <div class="form__item-content">
+              <div class="ingredients-items__inputs">
                 <!-- Quantity -->
-                <div class="input-container quantity-input">
-                  <input type="text"
-                         class="form__input"
-                         id="quantity"
+                <div class="input-container input-container--ingredients input-container--ingredients-quantity">
+                  <input type="text" class="quantity" placeholder="Qty."
                          name="originalEnter" />
                 </div>
                 <!-- Measurument -->
-                <div class="input-container measurument-input">
-                  <select name="measurumentInput"
-                          id="measurument">
+                <!-- 4. Use more descriptive class names to make it easier to differentitate between various page elements -->
+                <div class="input-container input-container--ingredients">
+                  <select>
                     <option value="selectMeasurument">Select type</option>
                     <optgroup label="Volume">
                       <option value="Cups">Cups</option>
@@ -243,6 +221,7 @@
                       <option value="Gallon">Gallon</option>
                     </optgroup>
                     <optgroup label="Weight">
+                      <option value="Each">Each</option>
                       <option value="Cups">Cups</option>
                       <option value="Tablespoons">Tablespoons</option>
                       <option value="Teaspoons">Teaspoons</option>
@@ -254,66 +233,18 @@
                   </select>
                 </div>
                 <!-- Ingredient -->
-                <div class="input-container ingredient-input">
-                  <input type="text"
-                         class="form__input"
-                         id="ingredient"
-                         name="originalEnter" />
-                </div>
-              </div>
-              <!-- Inputs for quantity, type of measurument and ingredient -->
-              <div class="form__item-content">
-                <!-- Quantity -->
-                <div class="input-container quantity-input">
-                  <input type="text"
-                         class="form__input"
-                         id="quantity"
-                         name="originalEnter" />
-                </div>
-                <!-- Measurument -->
-                <div class="input-container measurument-input">
-                  <select name="measurumentInput"
-                          id="measurument">
-                    <option value="selectMeasurument">Select type</option>
-                    <optgroup label="Volume">
-                      <option value="Cups">Cups</option>
-                      <option value="Tablespoons">Tablespoons</option>
-                      <option value="Teaspoons">Teaspoons</option>
-                      <option value="Milliliters">Milliliters</option>
-                      <option value="Liter">Liter</option>
-                      <option value="Ounces">Ounces</option>
-                      <option value="Pints">Pints</option>
-                      <option value="Quarts">Quarts</option>
-                      <option value="Gallon">Gallon</option>
-                    </optgroup>
-                    <optgroup label="Weight">
-                      <option value="Cups">Cups</option>
-                      <option value="Tablespoons">Tablespoons</option>
-                      <option value="Teaspoons">Teaspoons</option>
-                      <option value="Grams">Grams</option>
-                      <option value="Kilogram">Kilogram</option>
-                      <option value="Ounces">Ounces</option>
-                      <option value="Pounds">Pounds</option>
-                    </optgroup>
-                  </select>
-                </div>
-                <!-- Ingredient -->
-                <div class="input-container ingredient-input">
-                  <input type="text"
-                         class="form__input"
-                         id="ingredient"
+                <div class="input-container input-container--ingredients input-container--ingredients-ingredient">
+                  <input type="text" class="ingredient" placeholder="Ingredient"
                          name="originalEnter" />
                 </div>
               </div>
             </div>
-            <div class="add-btn">
-              <button type="submit"
-                      value="add"
-                      id="addIngredient">
-                <i class="fas fa-plus-circle"></i> Add ingredient
+            <div class="ingredients-items__button">
+              <button class="ingredients-items__button-add">
+                <i class="fas fa-plus-circle"></i> Add more
               </button>
             </div>
-            <div class="form__item">
+            <div class="ingredients-items__button-wrapp">
               <button type="submit"
                       value="calculate"
                       id="submit">Calculate</button>
@@ -321,14 +252,14 @@
                       value="clear"
                       id="clear">Clear</button>
             </div>
-          </div>
+          </section>
         </form>
       </section>
       <!-- Section for new converted recipe -->
-      <section class="section__results">
+      <section class="section-results">
         <!-- Default section before entering ingredients -->
-        <div class="section__results-default">
-          <h2 class="section__results-h2"> Calculated recipe will show
+        <div class="section-results-default">
+          <h2 class="section-results-h2"> Calculated recipe will show
             up here</h2>
           <div class="results-default__items">
             <div class="results-default__item">
@@ -339,7 +270,7 @@
           </div>
         </div>
         <!-- Converted results will show up on click calculate -->
-        <!-- <div class="section__results-converted">
+        <!-- <div class="section-results-converted">
                     <div class="results-converted__header">
                         <h2 class="results-converted__h1">Your new Recipe</h2>
                     </div>

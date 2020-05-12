@@ -1,26 +1,33 @@
 @media screen and (min-width: 768px)  {
     .container,
-    .nav,
-    .input-container--inline {
+    .header__nav,
+    .input-container--flex {
         display: flex;
     }
 
-    button {
-        width: auto;
+    .input-container--flex {
+        justify-content: space-between;
+        width: 70%;
     }
+
+    input[type="text"].quantity,
+    input[type="text"].ingredient {
+        padding: 1rem;
+    }
+
 }
 
 @media screen and (min-width: 998px)  {
 
     .container,
-    .nav {
+    .header__nav {
         flex-direction: row;
         max-width: 1500px;
         margin: 0 auto;
     }
 
-    .section__main,
-    .section__results {
+    .section-main,
+    .section-results {
         width: 50%;
     }
 
@@ -28,11 +35,11 @@
         width: inherit;
     }
 
-    .input-container--inline > div:nth-child(2) {
-        padding-left: 3rem;
+    .input-container--flex {
+        width: 100%;
     }
 
-    .section__results {
+    .section-results {
         border-left: 0.1rem #8080807d solid;
     }
 }
