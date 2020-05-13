@@ -1,4 +1,17 @@
+//prevent default
+/*
+document.getElementById('form').addEventListener("submit", function(event){
+    event.preventDefault();
+});
+*/
+
 let form = document.getElementById('form');
-let recipeName = document.getElementById('recipe-name');
-let servingsAmount = document.getElementById('servings-amount');
-let needsToserve = document.getElementById('needs-to-serve');
+form.addEventListener ('submit', function(event){
+    event.preventDefault();
+});
+
+
+//message
+
+let recipeName = document.queryCommandIndeterm('recipe-name');
+
