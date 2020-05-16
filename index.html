@@ -24,7 +24,7 @@
     <div class="container">
       <!-- Main calculator form -->
       <section class="section-main">
-        <form id="form" class="section-main__form">
+        <form id="form" name="calculator" class="section-main__form">
           <!-- Header for calculate a recipe -->
           <section>
             <header>
@@ -37,16 +37,22 @@
             <!-- Main inputs for recipe title and servings -->
             <div class="input-container">
               <label for="recipe-name" class="input-container__label">Recipe name:</label>
-              <input type="text" class="recipe-name" name="originalEnter" />
+              <div class="input-container__input-name">
+                <input type="text" id="recipe"  name="originalEnter" />
+              </div>
             </div>
             <div class="input-container--flex">
-              <div class="input-container">
+              <div class="input-container original">
                 <label for="original-recipe-servings" class="input-container__label">Original recipe servings:</label>
-                <input type="text" name="originalEnter" />
+                <div class="input-container__input-original">
+                  <input type="number" id="originalServings" name="originalEnter" />
+                </div>
               </div>
               <div class="input-container">
                 <label for="needs-to-serve" class="input-container__label">Needs to serve:</label>
-                <input type="text" name="originalEnter" />
+                <div class="input-container__input-need">
+                  <input type="number" id="needServings" name="originalEnter" />
+                </div>
               </div>
             </div>
           </section>

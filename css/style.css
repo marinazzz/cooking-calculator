@@ -282,3 +282,12 @@ button#clear {
 .section-results__image img {
     width: 100%;
 }
+
+
+
+/*Message style for required fields*/
+.error {
+    color: red;
+    margin: 0;
+    font-size: 1.2rem;
+}
