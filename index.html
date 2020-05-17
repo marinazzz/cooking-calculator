@@ -36,22 +36,25 @@
             </header>
             <!-- Main inputs for recipe title and servings -->
             <div class="input-container">
-              <label for="recipe-name" class="input-container__label">Recipe name:</label>
+              <label for="recipeName" class="input-container__label">Recipe name:</label>
               <div class="input-container__input-name">
-                <input type="text" id="recipe"  name="originalEnter" />
+                <input type="text" id="recipeName" name="recipeName" />
+                <div class="input-container__error">This field is required</div>
               </div>
             </div>
             <div class="input-container--flex">
-              <div class="input-container original">
-                <label for="original-recipe-servings" class="input-container__label">Original recipe servings:</label>
+              <div class="input-container">
+                <label for="originalServings" class="input-container__label">Original recipe servings:</label>
                 <div class="input-container__input-original">
-                  <input type="number" id="originalServings" name="originalEnter" />
+                  <input type="number" id="originalServings" name="originalServings" />
+                  <div class="input-container__error">This field is required</div>
                 </div>
               </div>
               <div class="input-container">
-                <label for="needs-to-serve" class="input-container__label">Needs to serve:</label>
+                <label for="needsToServe" class="input-container__label">Needs to serve:</label>
                 <div class="input-container__input-need">
-                  <input type="number" id="needServings" name="originalEnter" />
+                  <input type="number" id="needsToServe" name="needServings" />
+                  <div class="input-container__error">This field is required</div>
                 </div>
               </div>
             </div>
@@ -221,7 +224,7 @@
               </div>
             </div>
             <div class="ingredients-items__button">
-              <button class="ingredients-items__button-add">
+              <button type="button" class="ingredients-items__button-add">
                 <i class="fas fa-plus-circle"></i> Add more
               </button>
             </div>

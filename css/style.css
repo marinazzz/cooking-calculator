@@ -126,10 +126,21 @@ nav {
 
 .input-container__label {
     position: absolute;
-    bottom: 2.6rem;
+    bottom: 3rem;
     font-size: 1.4rem;
     font-weight: bold;
     color: var(--color-components-dark);
+}
+
+/* input errors */
+.input-container__error {
+  display: none;
+  font-size: 1.2rem;
+  color: red;
+}
+
+.input-container input.invalid + .input-container__error {
+  display: block;
 }
 
 /*Ingredients */
