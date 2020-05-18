@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin: 0;
     background-color: var(--color-components-light);
     color: var(--text-secondary-on-light);
@@ -35,18 +35,14 @@ p {
 input[type="text"],
 input[type="number"] {
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     letter-spacing: 0.2rem;
     width: inherit;
-    padding: 0.5rem;
     border: none;
     background: none;
     border-bottom: 0.1rem solid rgba(0, 0, 0, .12);
     font-size: inherit;
-    /* -webkit-appearance: none; */
     color: var(--color-components-dark);
-    padding: 2rem 0.8rem 0 0.8rem;
-    margin-top: 1rem;
     outline: none;
 }
 
@@ -115,32 +111,58 @@ nav {
 
 .input-container, .input-container--ingredients {
     display: flex;
-    margin-bottom: 1.5rem;
-    position: relative;
+    margin-bottom: 3rem;
     letter-spacing: 0.1rem;
     line-height: 2.5rem;
     height: 6rem;
 }
 
+.input-container {
+    flex-direction: column;
+}
+
 /*labels scale*/
 
 .input-container__label {
-    position: absolute;
-    bottom: 3rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
     color: var(--color-components-dark);
 }
 
 /* input errors */
 .input-container__error {
-  display: none;
-  font-size: 1.2rem;
-  color: red;
+    display: none;
+    font-size: 1.2rem;
+    color: red;
 }
 
-.input-container input.invalid + .input-container__error {
-  display: block;
+.input-container input.invalid + .input-container__error,
+input.invalid + .input-container__error {
+    display: block;
+}
+
+/*error ingredients*/
+
+.invalidBorder {
+    display: none;
+}
+
+input.invalidBorder,
+#measure.invalidBorder,
+#ingredient.invalidBorder {
+    display: block;
+    border: 0.1rem red dotted;
+}
+
+/*add new inputs*/
+
+.ingredients-items__add-inputs {
+    display: none;
+}
+
+.inputs {
+    display: block;
+    background: red;
 }
 
 /*Ingredients */
@@ -184,12 +206,23 @@ nav {
 }
 
 /*all inputs*/
+
+#needsToServe,
+#originalServings,
+#recipeName {
+    padding-bottom: 1rem;
+}
+
 input[type="number"].quantity,
 input[type="text"].ingredient {
     width: 100%;
     border-radius: 0.4rem;
-    padding: 0.5rem;
-    border-bottom: none;
+    padding-left: 1rem;
+    margin-top: 0;
+}
+
+input[type="number"].quantity {
+    padding-left: 0.5rem;
 }
 
 input[type="number"].quantity:focus,
@@ -207,17 +240,21 @@ select {
     letter-spacing: 0.1rem;
     color: #303030a8;
     line-height: 1.3;
-    padding: 1.5rem 1.5rem 0rem 0.8rem;
+    padding: 0 1rem;
     width: 100%;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
     background-repeat: no-repeat;
-    background-position: right 10% bottom 30%, 0 0;
+    background-position: right 10% bottom 50%, 0 0;
     background-size: 1.7rem auto, 100%;
     background-image: url(../images/icons8-expand-arrow-50.png);
 }
 
+option,
+optgroup {
+    color: black;
+}
 
 
 /*buttons*/
@@ -294,11 +331,3 @@ button#clear {
     width: 100%;
 }
 
-
-
-/*Message style for required fields*/
-.error {
-    color: red;
-    margin: 0;
-    font-size: 1.2rem;
-}
