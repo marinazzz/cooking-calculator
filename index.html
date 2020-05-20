@@ -59,55 +59,51 @@
               </div>
             </div>
           </section>
-          <!-- 1. Remove id attributes from recurring html elements -->
           <!-- Header for ingredients -->
           <section>
-            <!-- 2. After adding section tag make this a header tag -->
             <header>
               <h2>Ingredients</h2>
               <p>Enter quantity, type of measurement and all ingredients of your original recipe.</p>
             </header>
-            <!-- 3. Refactor this to use divs instead of ul and li -->
             <!-- Inputs for quantity, type of measurementand ingredient -->
             <div class="ingredients-items">
-              <div class="ingredients-items__inputs ">
-                <!-- Quantity -->
-                <div class="input-container--ingredients input-container--ingredients-quantity">
-                  <input type="number" id="quantity" class="quantity" placeholder="Qty." />
+                <div id="inputFields" class="ingredients-items__inputs ">
+                  <!-- Quantity -->
+                  <div class="input-container--ingredients input-container--ingredients-quantity">
+                    <input type="number" id="quantity" class="quantity" placeholder="Qty." />
+                  </div>
+                  <!-- measurement-->
+                  <div class="input-container--ingredients">
+                    <select id="measure" class="measure" name="measure">
+                      <option value="">Select type</option>
+                      <optgroup label="Volume">
+                        <option value="">Cups</option>
+                        <option value="">Tablespoons</option>
+                        <option value="">Teaspoons</option>
+                        <option value="">Milliliters</option>
+                        <option value="">Liter</option>
+                        <option value="">Ounces</option>
+                        <option value="">Pints</option>
+                        <option value="">Quarts</option>
+                        <option value="">Gallon</option>
+                      </optgroup>
+                      <optgroup label="Weight">
+                        <option value="">Each</option>
+                        <option value="">Cups</option>
+                        <option value="">Tablespoons</option>
+                        <option value="">Teaspoons</option>
+                        <option value="">Grams</option>
+                        <option value="">Kilogram</option>
+                        <option value="">Ounces</option>
+                        <option value="">Pounds</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <!-- Ingredient -->
+                  <div class="input-container--ingredients input-container--ingredients-ingredient">
+                    <input type="text" id="ingredient" class="ingredient" placeholder="Ingredient" />
+                  </div>
                 </div>
-                <!-- measurement-->
-                <!-- 4. Use more descriptive class names to make it easier to differentitate between various page elements -->
-                <div class="input-container--ingredients">
-                  <select id="measure" class="measure" name="measure">
-                    <option value="1222">Select type</option>
-                    <optgroup label="Volume">
-                      <option value="1">Cups</option>
-                      <option value="2">Tablespoons</option>
-                      <option value="">Teaspoons</option>
-                      <option value="">Milliliters</option>
-                      <option value="">Liter</option>
-                      <option value="">Ounces</option>
-                      <option value="">Pints</option>
-                      <option value="">Quarts</option>
-                      <option value="">Gallon</option>
-                    </optgroup>
-                    <optgroup label="Weight">
-                      <option value="">Each</option>
-                      <option value="">Cups</option>
-                      <option value="">Tablespoons</option>
-                      <option value="">Teaspoons</option>
-                      <option value="">Grams</option>
-                      <option value="">Kilogram</option>
-                      <option value="">Ounces</option>
-                      <option value="">Pounds</option>
-                    </optgroup>
-                  </select>
-                </div>
-                <!-- Ingredient -->
-                <div class="input-container--ingredients input-container--ingredients-ingredient">
-                  <input type="text" id="ingredient" class="ingredient" placeholder="Ingredient" />
-                </div>
-              </div>
             </div>
             <div class="ingredients-items__button">
               <button type="button" id="addIngredients" class="ingredients-items__button-add">

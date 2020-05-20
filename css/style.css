@@ -154,16 +154,6 @@ input.invalidBorder,
     border: 0.1rem red dotted;
 }
 
-/*add new inputs*/
-
-.ingredients-items__add-inputs {
-    display: none;
-}
-
-.inputs {
-    display: block;
-    background: red;
-}
 
 /*Ingredients */
 

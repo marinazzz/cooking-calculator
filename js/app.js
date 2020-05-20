@@ -89,72 +89,142 @@ form.addEventListener('submit', (event) => {
 });
 
 
-//add new ingredients fields
+//add new ingredients fields after button add is clicked
+
+
 
 //1.get add button
-const addIngredients = document.querySelector('.ingredients-items__button-add');
+const addIngredients = document.getElementById('addIngredients');
 
-const inputs = document.querySelector('.ingredients-items');
+//2.create function for add row every time clicks add button
+function addRow() {
+  //get parent node
+  const ingredientsItems = document.querySelector('.ingredients-items');
 
-/* const generateTemplate = field => {
-      const html = `
-      <div id="inputsIngredients" class="ingredients-items__inputs inputsIngredients">
-                <div class="input-container--ingredients input-container--ingredients-quantity">
-                  <input type="number" class="quantity" placeholder="Qty." name="originalEnter" />
-                </div>
-                <span>${field}</span>
-                <div class="input-container--ingredients">
-                  <select>
-                    <option value="selectMeasurement">Select type</option>
-                    <optgroup label="Volume">
-                      <option value="Cups">Cups</option>
-                      <option value="Tablespoons">Tablespoons</option>
-                      <option value="Teaspoons">Teaspoons</option>
-                      <option value="Milliliters">Milliliters</option>
-                      <option value="Liter">Liter</option>
-                      <option value="Ounces">Ounces</option>
-                      <option value="Pints">Pints</option>
-                      <option value="Quarts">Quarts</option>
-                      <option value="Gallon">Gallon</option>
-                    </optgroup>
-                    <optgroup label="Weight">
-                      <option value="Each">Each</option>
-                      <option value="Cups">Cups</option>
-                      <option value="Tablespoons">Tablespoons</option>
-                      <option value="Teaspoons">Teaspoons</option>
-                      <option value="Grams">Grams</option>
-                      <option value="Kilogram">Kilogram</option>
-                      <option value="Ounces">Ounces</option>
-                      <option value="Pounds">Pounds</option>
-                    </optgroup>
-                  </select>
-                </div>
-                <div class="input-container--ingredients input-container--ingredients-ingredient">
-                  <input type="text" class="ingredient" placeholder="Ingredient" name="originalEnter" />
-                </div>
-      `;
+  //create container items
+  const ingredientInputs = document.createElement('div');
+  ingredientInputs.classList.add('ingredients-items__inputs');
 
-      inputs.innerHTML = html;
-};
+  //create elements quantity
+
+  const inputContainer = document.createElement('div');
+  inputContainer.classList.add('input-container--ingredients','input-container--ingredients-quantity');
+
+  const inputQuantity = document.createElement('input');
+  inputQuantity.classList.add('quantity');
+  inputQuantity.placeholder = 'Qty';
+  inputQuantity.id = 'quantity';
+  inputQuantity.setAttribute('type','number');
+
+  //append input on inputs container
+  inputContainer.appendChild(inputQuantity);
 
 
-//2.add event listener
 
-addIngredients.addEventListener('click', () => {
-    //3.add new ingredients
-    generateTemplate(field);
+  //create select element for measure
+  const containerSelect = document.createElement('div');
+  containerSelect.classList.add('input-container--ingredients');
 
-});
- */
+  const select = document.createElement('select');
+  select.classList.add('measure');
 
-//get all inputs ingredients
+  const optionSelect = document.createElement('option');
+  optionSelect.textContent = "Select type";
 
-/* let ingredients = document.querySelectorAll('.inputsIngredients');
-console.log(ingredients);
+     //volume
+  const optionVolume = document.createElement('optgroup');
+  optionVolume.label = 'Volume';
 
-ingredients.forEach (ingredient => {
-  ingredient.addEventListener('click', e => {
-    e.target.remove();
+  const optionCups = document.createElement('option');
+  optionCups.innerText = 'Cups';
 
-});
-}); */
+  const optionTablespoons = document.createElement('option');
+  optionTablespoons.innerText = 'Tablespoons';
+
+  const optionTeaspoons = document.createElement('option');
+  optionTeaspoons.innerText = 'Teaspoons';
+
+  const optionMilliliters = document.createElement('option');
+  optionMilliliters.innerText = 'Milliliters';
+
+  const optionLiter = document.createElement('option');
+  optionLiter.innerText = 'Liter';
+
+  const optionOunces = document.createElement('option');
+  optionOunces.innerText = 'Ounces';
+
+  const optionPints = document.createElement('option');
+  optionPints.innerText = 'Pints';
+
+  const optionQuarts = document.createElement('option');
+  optionQuarts.innerText = 'Quarts';
+
+  const optionGallon = document.createElement('option');
+  optionGallon.innerText = 'Gallon';
+
+  //append options on volume optiongroup
+  optionVolume.append(optionCups,optionTablespoons,optionMilliliters,optionLiter,optionOunces,optionPints,optionQuarts,optionGallon);
+
+     //weight
+  const optionWeight = document.createElement('optgroup');
+  optionWeight.label = 'Weight';
+
+  const optionEach = document.createElement('option');
+  optionEach.innerText = 'Each';
+
+  const optionCupsWeight = document.createElement('option');
+  optionCupsWeight.innerText = 'Cups';
+
+  const optionTablespoonsWeight = document.createElement('option');
+  optionTablespoonsWeight.innerText = 'Tablespoons';
+
+  const optionTeaspoonsWeight = document.createElement('option');
+  optionTeaspoonsWeight.innerText = 'Teaspoons';
+
+  const optionGrams = document.createElement('option');
+  optionGrams.innerText = 'Grams';
+
+  const optionKilogram = document.createElement('option');
+  optionKilogram.innerText = 'Kilogram';
+
+  const optionOuncesWeight = document.createElement('option');
+  optionOuncesWeight.innerText = 'Ounces';
+
+  const optionPounds = document.createElement('option');
+  optionPounds.innerText = 'Pounds';
+   //append options on weight optiongruop
+   optionWeight.append(optionEach,optionCupsWeight,optionTablespoonsWeight,optionGrams,optionKilogram,optionOuncesWeight,optionPounds);
+
+
+   //append on select element
+   select.append(optionSelect,optionVolume,optionWeight);
+
+   containerSelect.append(select);
+
+  //create input elements for ingredient
+
+  const ingredientInputContainer = document.createElement('div');
+  ingredientInputContainer.classList.add('input-container--ingredients','input-container--ingredients-ingredient');
+
+  const inputIngredient = document.createElement('input');
+  inputIngredient.classList.add('ingredient');
+
+  inputIngredient.placeholder = 'Ingredient';
+  inputIngredient.id = 'ingredient';
+  inputIngredient.setAttribute('type','text');
+
+    //append input on container div
+    ingredientInputContainer.appendChild(inputIngredient);
+
+
+
+  //append all fields on ingredient inputs div
+  ingredientInputs.append(inputContainer,containerSelect,ingredientInputContainer);
+
+  //append all elements on parent ingredients items
+  ingredientsItems.append(ingredientInputs);
+}
+
+//3.add event listener on add button
+
+addIngredients.addEventListener('click', addRow);
