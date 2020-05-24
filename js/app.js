@@ -2,11 +2,7 @@ const form = document.getElementById('form');
 const recipeName = document.getElementById('recipeName');
 const servings = document.getElementById('originalServings');
 const needsToServe = document.getElementById('needsToServe');
-const quantity = document.getElementById('quantity');
-const measure = document.getElementById('measure');
-const ingredient = document.getElementById('ingredient');
-
-
+const ingredients = document.getElementsByClassName('ingredients-items__inputs');
 //removes class after field is filled out
 recipeName.addEventListener('input', () => {
   if (recipeName.classList.contains('invalid') && recipeName.value !== '') {
@@ -15,33 +11,39 @@ recipeName.addEventListener('input', () => {
 });
 
 servings.addEventListener('input', () => {
-    if (servings.classList.contains('invalid') && servings.value !== '') {
-        servings.classList.remove('invalid');
-    }
+  if (servings.classList.contains('invalid') && servings.value !== '') {
+    servings.classList.remove('invalid');
+  }
 });
 
 needsToServe.addEventListener('input', () => {
-    if (needsToServe.classList.contains('invalid') && needsToServe.value !== '') {
-        needsToServe.classList.remove('invalid');
-    }
+  if (needsToServe.classList.contains('invalid') && needsToServe.value !== '') {
+    needsToServe.classList.remove('invalid');
+  }
 });
 
-quantity.addEventListener('input', () => {
-  if (quantity.classList.contains('invalidBorder') && quantity.value !== '') {
+Array.from(ingredients).forEach((ingredient) => {
+  const quantity = ingredient.querySelector('input[type="number"][class="quantity"]');
+  const measure = ingredient.querySelector('select.measure');
+  const name = ingredient.querySelector('input.ingredient');
+
+  quantity.addEventListener('input', () => {
+    if (quantity.classList.contains('invalidBorder') && quantity.value !== '') {
       quantity.classList.remove('invalidBorder');
-  }
-});
+    }
+  });
 
-measure.addEventListener('change', () => {
-  if (measure.classList.contains('invalidBorder')) {
+  measure.addEventListener('change', () => {
+    if (measure.classList.contains('invalidBorder')) {
       measure.classList.remove('invalidBorder');
-  }
-});
+    }
+  });
 
-ingredient.addEventListener('input', () => {
-  if (ingredient.classList.contains('invalidBorder') && ingredient.value !== '') {
+  name.addEventListener('input', () => {
+    if (ingredient.classList.contains('invalidBorder') && ingredient.value !== '') {
       ingredient.classList.remove('invalidBorder');
-  }
+    }
+  });
 });
 
 
@@ -68,26 +70,47 @@ form.addEventListener('submit', (event) => {
     needsToServe.classList.remove('invalid');
   }
 
-  if (Number(quantity.value) <= 0 || quantity.value === null) {
-    quantity.classList.add('invalidBorder');
-  } else {
-    quantity.classList.remove('invalidBorder');
-  }
+  // if (Number(quantity.value) <= 0 || quantity.value === null) {
+  //   quantity.classList.add('invalidBorder');
+  // } else {
+  //   quantity.classList.remove('invalidBorder');
+  // }
 
-  if (document.querySelector('option').selected) {
-    measure.classList.add('invalidBorder');
-  } else {
-    measure.classList.remove('invalidBorder');
-  }
+  // if (document.querySelector('option').selected) {
+  //   measure.classList.add('invalidBorder');
+  // } else {
+  //   measure.classList.remove('invalidBorder');
+  // }
 
-  if (ingredient.value === '' || ingredient.value === null) {
-    ingredient.classList.add('invalidBorder');
-  } else {
-    ingredient.classList.remove('invalidBorder');
-  }
+  const ingredients = Array.from(document.getElementsByClassName('ingredients-items__inputs'));
+  ingredients.forEach((ingredient, index) => {
+    const quantity = ingredient.querySelector('.quantity');
+    if (Number(quantity.value) <= 0 || quantity.value === null) {
+      quantity.classList.add('invalidBorder');
+    }
+
+    const measurement = ingredient.querySelector('.measure');
+    if (measurement.value === '' || measurement.value === null) {
+      measurement.classList.add('invalidBorder')
+    }
+
+    const ingredientName = ingredient.querySelector('.ingredient');
+    if (ingredientName.value === '' || ingredientName.value === null) {
+      ingredientName.classList.add('invalidBorder')
+    }
+  });
+
+  // ingredients.forEach((inputGroup, index) => {
+  //   console.log(inputGroup, index);
+  // });
+
+  // if (ingredient.value === '' || ingredient.value === null) {
+  //   ingredient.classList.add('invalidBorder');
+  // } else {
+  //   ingredient.classList.remove('invalidBorder');
+  // }
 
 });
-
 
 //add new ingredients fields after button add is clicked
 
@@ -108,18 +131,22 @@ function addRow() {
   //create elements quantity
 
   const inputContainer = document.createElement('div');
-  inputContainer.classList.add('input-container--ingredients','input-container--ingredients-quantity');
+  inputContainer.classList.add('input-container--ingredients', 'input-container--ingredients-quantity');
 
   const inputQuantity = document.createElement('input');
   inputQuantity.classList.add('quantity');
   inputQuantity.placeholder = 'Qty';
   inputQuantity.id = 'quantity';
-  inputQuantity.setAttribute('type','number');
+  inputQuantity.setAttribute('type', 'number');
 
   //append input on inputs container
   inputContainer.appendChild(inputQuantity);
 
-
+  inputQuantity.addEventListener('input', () => {
+    if (inputQuantity.classList.contains('invalidBorder') && quantity.value !== '') {
+      inputQuantity.classList.remove('invalidBorder');
+    }
+  });
 
   //create select element for measure
   const containerSelect = document.createElement('div');
@@ -129,9 +156,31 @@ function addRow() {
   select.classList.add('measure');
 
   const optionSelect = document.createElement('option');
-  optionSelect.textContent = "Select type";
+  optionSelect.textContent = "";
 
-     //volume
+  //volume
+  // TODO: make measurements options dynamically generated in order to make the code more readable   
+  // const measurements = {
+  //   volume: [
+  //     {name: 'Cups', value: 'cups' }
+  //   ],
+  //   weight: [
+
+  //   ]
+  // };
+  // const optionVolume = document.createElement('optgroup');
+  // optionVolume.label = 'Volume';
+  // measurements.volume.forEach((measurement, index) => {
+  //   const option = document.createElement('option');
+  //   option.innerText = measurement.name;
+  //   option.value = measurement.value;
+  //   optionVolume.append(option);
+  // });
+
+  // const optionWeight = document.createElement('optgroup');
+  // optionWeight.label = 'Weight';
+
+
   const optionVolume = document.createElement('optgroup');
   optionVolume.label = 'Volume';
 
@@ -163,9 +212,9 @@ function addRow() {
   optionGallon.innerText = 'Gallon';
 
   //append options on volume optiongroup
-  optionVolume.append(optionCups,optionTablespoons,optionMilliliters,optionLiter,optionOunces,optionPints,optionQuarts,optionGallon);
+  optionVolume.append(optionCups, optionTablespoons, optionMilliliters, optionLiter, optionOunces, optionPints, optionQuarts, optionGallon);
 
-     //weight
+  //weight
   const optionWeight = document.createElement('optgroup');
   optionWeight.label = 'Weight';
 
@@ -192,34 +241,44 @@ function addRow() {
 
   const optionPounds = document.createElement('option');
   optionPounds.innerText = 'Pounds';
-   //append options on weight optiongruop
-   optionWeight.append(optionEach,optionCupsWeight,optionTablespoonsWeight,optionGrams,optionKilogram,optionOuncesWeight,optionPounds);
+  //append options on weight optiongruop
+  optionWeight.append(optionEach, optionCupsWeight, optionTablespoonsWeight, optionGrams, optionKilogram, optionOuncesWeight, optionPounds);
 
 
-   //append on select element
-   select.append(optionSelect,optionVolume,optionWeight);
+  //append on select element
+  select.append(optionSelect, optionVolume, optionWeight);
 
-   containerSelect.append(select);
+  containerSelect.append(select);
+
+  select.addEventListener('change', () => {
+    if (select.classList.contains('invalidBorder')) {
+      select.classList.remove('invalidBorder');
+    }
+  });
 
   //create input elements for ingredient
 
   const ingredientInputContainer = document.createElement('div');
-  ingredientInputContainer.classList.add('input-container--ingredients','input-container--ingredients-ingredient');
+  ingredientInputContainer.classList.add('input-container--ingredients', 'input-container--ingredients-ingredient');
 
   const inputIngredient = document.createElement('input');
   inputIngredient.classList.add('ingredient');
 
   inputIngredient.placeholder = 'Ingredient';
   inputIngredient.id = 'ingredient';
-  inputIngredient.setAttribute('type','text');
+  inputIngredient.setAttribute('type', 'text');
 
-    //append input on container div
-    ingredientInputContainer.appendChild(inputIngredient);
+  //append input on container div
+  ingredientInputContainer.appendChild(inputIngredient);
 
-
+  inputIngredient.addEventListener('input', () => {
+    if (inputIngredient.classList.contains('invalidBorder') && inputIngredient.value !== '') {
+      inputIngredient.classList.remove('invalidBorder');
+    }
+  });
 
   //append all fields on ingredient inputs div
-  ingredientInputs.append(inputContainer,containerSelect,ingredientInputContainer);
+  ingredientInputs.append(inputContainer, containerSelect, ingredientInputContainer);
 
   //append all elements on parent ingredients items
   ingredientsItems.append(ingredientInputs);
@@ -228,3 +287,13 @@ function addRow() {
 //3.add event listener on add button
 
 addIngredients.addEventListener('click', addRow);
+
+// const object = {
+//   name: 'Milos',
+//   age: 28,
+//   hobby: 'plyaing guitar'
+// };
+
+// const objString = JSON.stringify(object);
+
+// console.log(JSON.parse(objString));

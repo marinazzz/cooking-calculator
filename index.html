@@ -67,43 +67,43 @@
             </header>
             <!-- Inputs for quantity, type of measurementand ingredient -->
             <div class="ingredients-items">
-                <div id="inputFields" class="ingredients-items__inputs ">
-                  <!-- Quantity -->
-                  <div class="input-container--ingredients input-container--ingredients-quantity">
-                    <input type="number" id="quantity" class="quantity" placeholder="Qty." />
-                  </div>
-                  <!-- measurement-->
-                  <div class="input-container--ingredients">
-                    <select id="measure" class="measure" name="measure">
-                      <option value="">Select type</option>
-                      <optgroup label="Volume">
-                        <option value="">Cups</option>
-                        <option value="">Tablespoons</option>
-                        <option value="">Teaspoons</option>
-                        <option value="">Milliliters</option>
-                        <option value="">Liter</option>
-                        <option value="">Ounces</option>
-                        <option value="">Pints</option>
-                        <option value="">Quarts</option>
-                        <option value="">Gallon</option>
-                      </optgroup>
-                      <optgroup label="Weight">
-                        <option value="">Each</option>
-                        <option value="">Cups</option>
-                        <option value="">Tablespoons</option>
-                        <option value="">Teaspoons</option>
-                        <option value="">Grams</option>
-                        <option value="">Kilogram</option>
-                        <option value="">Ounces</option>
-                        <option value="">Pounds</option>
-                      </optgroup>
-                    </select>
-                  </div>
-                  <!-- Ingredient -->
-                  <div class="input-container--ingredients input-container--ingredients-ingredient">
-                    <input type="text" id="ingredient" class="ingredient" placeholder="Ingredient" />
-                  </div>
+              <div class="ingredients-items__inputs">
+                <!-- Quantity -->
+                <div class="input-container--ingredients input-container--ingredients-quantity">
+                  <input type="number" class="quantity" placeholder="Qty." />
                 </div>
+                <!-- measurement-->
+                <div class="input-container--ingredients">
+                  <select class="measure" name="measure">
+                    <option value="">Select type</option>
+                    <optgroup label="Volume">
+                      <option value="cups">Cups</option>
+                      <option value="tablespoons">Tablespoons</option>
+                      <option value="teaspoons">Teaspoons</option>
+                      <option value="millilitets">Milliliters</option>
+                      <option value="liter">Liter</option>
+                      <option value="ounces">Ounces</option>
+                      <option value="pints">Pints</option>
+                      <option value="quaarts">Quarts</option>
+                      <option value="gallon">Gallon</option>
+                    </optgroup>
+                    <optgroup label="Weight">
+                      <option value="each">Each</option>
+                      <option value="cups">Cups</option>
+                      <option value="tablespoon">Tablespoons</option>
+                      <option value="teaspoons">Teaspoons</option>
+                      <option value="grams">Grams</option>
+                      <option value="kliogram">Kilogram</option>
+                      <option value="ounces">Ounces</option>
+                      <option value="pounds">Pounds</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <!-- Ingredient -->
+                <div class="input-container--ingredients input-container--ingredients-ingredient">
+                  <input type="text" class="ingredient" placeholder="Ingredient" />
+                </div>
+              </div>
             </div>
             <div class="ingredients-items__button">
               <button type="button" id="addIngredients" class="ingredients-items__button-add">

@@ -143,16 +143,22 @@ input.invalid + .input-container__error {
 
 /*error ingredients*/
 
-.invalidBorder {
+/* .invalidBorder {
     display: none;
-}
+} */
 
-input.invalidBorder,
-#measure.invalidBorder,
-#ingredient.invalidBorder {
+input[type="number"].invalidBorder,
+input[type="text"].invalidBorder,
+select.invalidBorder {
     display: block;
     border: 0.1rem red dotted;
 }
+
+/* input.invalidBorder,
+select.invalidBorder {
+    display: block;
+    border: 0.1rem red dotted;
+} */
 
 
 /*Ingredients */
