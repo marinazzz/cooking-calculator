@@ -53,7 +53,7 @@
               <div class="input-container">
                 <label for="needsToServe" class="input-container__label">Needs to serve:</label>
                 <div class="input-container__input-need">
-                  <input type="number" id="needsToServe" name="needServings" />
+                  <input type="number" id="needsToServe" name="needsToServe" />
                   <div class="input-container__error">This field is required</div>
                 </div>
               </div>
@@ -70,7 +70,7 @@
               <div class="ingredients-items__inputs">
                 <!-- Quantity -->
                 <div class="input-container--ingredients input-container--ingredients-quantity">
-                  <input type="number" class="quantity" placeholder="Qty." />
+                  <input type="number" class="quantity" name="quantity" placeholder="Qty." />
                 </div>
                 <!-- measurement-->
                 <div class="input-container--ingredients">
@@ -80,20 +80,20 @@
                       <option value="cups">Cups</option>
                       <option value="tablespoons">Tablespoons</option>
                       <option value="teaspoons">Teaspoons</option>
-                      <option value="millilitets">Milliliters</option>
+                      <option value="milliliters">Milliliters</option>
                       <option value="liter">Liter</option>
                       <option value="ounces">Ounces</option>
                       <option value="pints">Pints</option>
-                      <option value="quaarts">Quarts</option>
+                      <option value="quarts">Quarts</option>
                       <option value="gallon">Gallon</option>
                     </optgroup>
                     <optgroup label="Weight">
                       <option value="each">Each</option>
                       <option value="cups">Cups</option>
-                      <option value="tablespoon">Tablespoons</option>
+                      <option value="tablespoons">Tablespoons</option>
                       <option value="teaspoons">Teaspoons</option>
                       <option value="grams">Grams</option>
-                      <option value="kliogram">Kilogram</option>
+                      <option value="kilogram">Kilogram</option>
                       <option value="ounces">Ounces</option>
                       <option value="pounds">Pounds</option>
                     </optgroup>
@@ -101,7 +101,7 @@
                 </div>
                 <!-- Ingredient -->
                 <div class="input-container--ingredients input-container--ingredients-ingredient">
-                  <input type="text" class="ingredient" placeholder="Ingredient" />
+                  <input type="text" class="ingredient" name="ingredient" placeholder="Ingredient" />
                 </div>
               </div>
             </div>
@@ -118,34 +118,12 @@
         </form>
       </section>
       <!-- Section for new converted recipe -->
-      <section class="section-results">
-        <!-- Default section before entering ingredients -->
+      <section class="section-results section-results--background">
         <div class="section-results__default">
-          <h2> Calculated recipe will show
+          <h2 class="section-results__title"> Calculated recipe will show
             up here</h2>
-          <div class="section-results__image">
-            <img src="images/clipart-for-cooking-calculator-mz.png" alt="cooking-recipe-book" />
-          </div>
+          <div class="section-results__content"></div>
         </div>
-        <!-- Converted results will show up on click calculate -->
-        <!-- <div class="section-results__calculated">
-                    <header class="section-results__header">
-                        <h2 class="results-converted__h1">Your new Recipe</h2>
-                    </header>
-                    <div class="section-results__items">
-                        <h3 class="section-results__heading">Recipe title</h3>
-                        <p class="section-results__text">Amount of servings</p>
-                        <div class="section-results__list">
-                            <ul>
-                                <li class="converted-ingredient"></li>
-                                <li class="converted-ingredient"></li>
-                                <li class="converted-ingredient"></li>
-                                <li class="converted-ingredient"></li>
-                                <li class="converted-ingredient"></li>
-                            </ul>
-                        </div>
-                    </div>
-              </div> -->
       </section>
     </div>
   </main>

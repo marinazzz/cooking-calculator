@@ -143,22 +143,12 @@ input.invalid + .input-container__error {
 
 /*error ingredients*/
 
-/* .invalidBorder {
-    display: none;
-} */
-
 input[type="number"].invalidBorder,
 input[type="text"].invalidBorder,
 select.invalidBorder {
     display: block;
     border: 0.1rem red dotted;
 }
-
-/* input.invalidBorder,
-select.invalidBorder {
-    display: block;
-    border: 0.1rem red dotted;
-} */
 
 
 /*Ingredients */
@@ -317,13 +307,13 @@ button#clear {
     justify-content: space-between;
 }
 
+
 /*Default section before entering ingredients*/
 
-.section-results__image {
-    width: auto;
-}
-
-.section-results__image img {
-    width: 100%;
+.section-results--background {
+    background-image: url("../images/clipart-for-cooking-calculator-mz.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 50rem;
 }
 

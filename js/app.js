@@ -1,8 +1,10 @@
 const form = document.getElementById('form');
-const recipeName = document.getElementById('recipeName');
-const servings = document.getElementById('originalServings');
-const needsToServe = document.getElementById('needsToServe');
+const recipeName = document.querySelector('input[name="recipeName"]');
+const servings = document.querySelector('input[name="originalServings"]');
+const needsToServe = document.querySelector('input[name="needsToServe"]');
 const ingredients = document.getElementsByClassName('ingredients-items__inputs');
+
+
 //removes class after field is filled out
 recipeName.addEventListener('input', () => {
   if (recipeName.classList.contains('invalid') && recipeName.value !== '') {
@@ -23,7 +25,7 @@ needsToServe.addEventListener('input', () => {
 });
 
 Array.from(ingredients).forEach((ingredient) => {
-  const quantity = ingredient.querySelector('input[type="number"][class="quantity"]');
+  const quantity = ingredient.querySelector('input.quantity');
   const measure = ingredient.querySelector('select.measure');
   const name = ingredient.querySelector('input.ingredient');
 
@@ -40,8 +42,8 @@ Array.from(ingredients).forEach((ingredient) => {
   });
 
   name.addEventListener('input', () => {
-    if (ingredient.classList.contains('invalidBorder') && ingredient.value !== '') {
-      ingredient.classList.remove('invalidBorder');
+    if (name.classList.contains('invalidBorder') && ingredient.value !== '') {
+      name.classList.remove('invalidBorder');
     }
   });
 });
@@ -70,18 +72,6 @@ form.addEventListener('submit', (event) => {
     needsToServe.classList.remove('invalid');
   }
 
-  // if (Number(quantity.value) <= 0 || quantity.value === null) {
-  //   quantity.classList.add('invalidBorder');
-  // } else {
-  //   quantity.classList.remove('invalidBorder');
-  // }
-
-  // if (document.querySelector('option').selected) {
-  //   measure.classList.add('invalidBorder');
-  // } else {
-  //   measure.classList.remove('invalidBorder');
-  // }
-
   const ingredients = Array.from(document.getElementsByClassName('ingredients-items__inputs'));
   ingredients.forEach((ingredient, index) => {
     const quantity = ingredient.querySelector('.quantity');
@@ -99,16 +89,6 @@ form.addEventListener('submit', (event) => {
       ingredientName.classList.add('invalidBorder')
     }
   });
-
-  // ingredients.forEach((inputGroup, index) => {
-  //   console.log(inputGroup, index);
-  // });
-
-  // if (ingredient.value === '' || ingredient.value === null) {
-  //   ingredient.classList.add('invalidBorder');
-  // } else {
-  //   ingredient.classList.remove('invalidBorder');
-  // }
 
 });
 
@@ -136,17 +116,18 @@ function addRow() {
   const inputQuantity = document.createElement('input');
   inputQuantity.classList.add('quantity');
   inputQuantity.placeholder = 'Qty';
-  inputQuantity.id = 'quantity';
   inputQuantity.setAttribute('type', 'number');
 
   //append input on inputs container
   inputContainer.appendChild(inputQuantity);
 
   inputQuantity.addEventListener('input', () => {
-    if (inputQuantity.classList.contains('invalidBorder') && quantity.value !== '') {
+    if (inputQuantity.classList.contains('invalidBorder') && inputQuantity.value !== '') {
       inputQuantity.classList.remove('invalidBorder');
     }
   });
+
+
 
   //create select element for measure
   const containerSelect = document.createElement('div');
@@ -156,98 +137,53 @@ function addRow() {
   select.classList.add('measure');
 
   const optionSelect = document.createElement('option');
-  optionSelect.textContent = "";
+  optionSelect.label = 'Select type';
 
-  //volume
-  // TODO: make measurements options dynamically generated in order to make the code more readable   
-  // const measurements = {
-  //   volume: [
-  //     {name: 'Cups', value: 'cups' }
-  //   ],
-  //   weight: [
-
-  //   ]
-  // };
-  // const optionVolume = document.createElement('optgroup');
-  // optionVolume.label = 'Volume';
-  // measurements.volume.forEach((measurement, index) => {
-  //   const option = document.createElement('option');
-  //   option.innerText = measurement.name;
-  //   option.value = measurement.value;
-  //   optionVolume.append(option);
-  // });
-
-  // const optionWeight = document.createElement('optgroup');
-  // optionWeight.label = 'Weight';
-
+  // TODO: make measurements options dynamically generated in order to make the code more readable
+  const measurements = {
+      volume: [
+        {name: 'Cups', value: 'cups' },
+        {name: 'Tablespoons', value: 'tablespoons'},
+        {name: 'Teaspoons', value: 'teaspoons'},
+        {name: 'Milliliters', value: 'milliliters'},
+        {name: 'Liter', value: 'liter'},
+        {name: 'Ounces', value: 'ounces'},
+        {name: 'Pints', value: 'pints'},
+        {name: 'Quarts', value: 'quarts'},
+        {name: 'Gallon', value: 'gallon'}
+     ],
+      weight: [
+        {name: 'Each', value: 'each' },
+        {name: 'Cups', value: 'cups' },
+        {name: 'Grams', value: 'grams'},
+        {name: 'Kilogram', value: 'kilogram'},
+        {name: 'Ounces', value: 'ounces'},
+        {name: 'Pounds', value: 'pounds'},
+      ]
+   };
 
   const optionVolume = document.createElement('optgroup');
   optionVolume.label = 'Volume';
+  measurements.volume.forEach((measurement, index) => {
+     const optionV = document.createElement('option');
+     optionV.innerText = measurement.name;
+     optionV.value = measurement.value;
+     optionVolume.append(optionV);
+  });
 
-  const optionCups = document.createElement('option');
-  optionCups.innerText = 'Cups';
-
-  const optionTablespoons = document.createElement('option');
-  optionTablespoons.innerText = 'Tablespoons';
-
-  const optionTeaspoons = document.createElement('option');
-  optionTeaspoons.innerText = 'Teaspoons';
-
-  const optionMilliliters = document.createElement('option');
-  optionMilliliters.innerText = 'Milliliters';
-
-  const optionLiter = document.createElement('option');
-  optionLiter.innerText = 'Liter';
-
-  const optionOunces = document.createElement('option');
-  optionOunces.innerText = 'Ounces';
-
-  const optionPints = document.createElement('option');
-  optionPints.innerText = 'Pints';
-
-  const optionQuarts = document.createElement('option');
-  optionQuarts.innerText = 'Quarts';
-
-  const optionGallon = document.createElement('option');
-  optionGallon.innerText = 'Gallon';
-
-  //append options on volume optiongroup
-  optionVolume.append(optionCups, optionTablespoons, optionMilliliters, optionLiter, optionOunces, optionPints, optionQuarts, optionGallon);
-
-  //weight
   const optionWeight = document.createElement('optgroup');
   optionWeight.label = 'Weight';
-
-  const optionEach = document.createElement('option');
-  optionEach.innerText = 'Each';
-
-  const optionCupsWeight = document.createElement('option');
-  optionCupsWeight.innerText = 'Cups';
-
-  const optionTablespoonsWeight = document.createElement('option');
-  optionTablespoonsWeight.innerText = 'Tablespoons';
-
-  const optionTeaspoonsWeight = document.createElement('option');
-  optionTeaspoonsWeight.innerText = 'Teaspoons';
-
-  const optionGrams = document.createElement('option');
-  optionGrams.innerText = 'Grams';
-
-  const optionKilogram = document.createElement('option');
-  optionKilogram.innerText = 'Kilogram';
-
-  const optionOuncesWeight = document.createElement('option');
-  optionOuncesWeight.innerText = 'Ounces';
-
-  const optionPounds = document.createElement('option');
-  optionPounds.innerText = 'Pounds';
-  //append options on weight optiongruop
-  optionWeight.append(optionEach, optionCupsWeight, optionTablespoonsWeight, optionGrams, optionKilogram, optionOuncesWeight, optionPounds);
+  measurements.weight.forEach((measurement, index) => {
+     const optionW = document.createElement('option');
+     optionW.innerText = measurement.name;
+     optionW.value = measurement.value;
+     optionWeight.append(optionW);
+  });
 
 
   //append on select element
   select.append(optionSelect, optionVolume, optionWeight);
-
+  //append all on container select
   containerSelect.append(select);
 
   select.addEventListener('change', () => {
@@ -265,7 +201,6 @@ function addRow() {
   inputIngredient.classList.add('ingredient');
 
   inputIngredient.placeholder = 'Ingredient';
-  inputIngredient.id = 'ingredient';
   inputIngredient.setAttribute('type', 'text');
 
   //append input on container div
@@ -279,14 +214,59 @@ function addRow() {
 
   //append all fields on ingredient inputs div
   ingredientInputs.append(inputContainer, containerSelect, ingredientInputContainer);
-
   //append all elements on parent ingredients items
   ingredientsItems.append(ingredientInputs);
 }
 
 //3.add event listener on add button
-
 addIngredients.addEventListener('click', addRow);
+
+
+
+//TODO: on submit get data from all inputs
+
+//BUG: every submit creates elements, needs to create elements only when inputs have data,
+//      if statment is not good
+
+form.addEventListener('submit', () => {
+
+  let formValues = new FormData(document.forms[0]);
+//let originalServingsValue = formValues.get('originalServings');
+  let measureValue = formValues.get('measure');
+  let ingredientValue = formValues.get('ingredient');
+
+  if (recipeName.value === '' || recipeName.value === null) {
+
+    let recipeValue = formValues.get('recipeName');
+    let recipe = document.createElement('h3');
+    recipe.textContent = recipeValue;
+    document.querySelector('.section-results__content').append(recipe);
+  }
+
+  if (Number(needsToServe.value) != 0 || needsToServe.value !== null ) {
+
+    let needsToServeValue = formValues.get('needsToServe');
+    let wishServings = document.createElement('p');
+    wishServings.textContent = 'Serves for:' + ' ' + needsToServeValue;
+    document.querySelector('.section-results__content').append(wishServings);
+  }
+
+
+  if (ingredients[0].value !== '' || ingredients[0].value !== null ) {
+
+    let quantity = document.getElementsByClassName('quantity');
+    quantity = formValues.get('quantity');
+    let quantities = document.createElement('li');
+    quantities.textContent = quantity;
+
+    document.querySelector('.section-results__content').append(quantities);
+    quantities.append(' ' + measureValue + ' ' + ingredientValue);
+
+  }
+
+
+});
+
 
 // const object = {
 //   name: 'Milos',
@@ -297,3 +277,41 @@ addIngredients.addEventListener('click', addRow);
 // const objString = JSON.stringify(object);
 
 // console.log(JSON.parse(objString));
+
+
+
+/* let dataContainer = {
+  "nameRecipe": "Bread",
+  "servingOriginal": 2,
+  "servingWish": 4,
+  "ingrQuantity": 5,
+  "ingrMeasure": "cups",
+  "ingrName": "flour"
+}
+
+
+const objString = JSON.stringify(dataContainer);
+console.log(objString); */
+/* const sectionResults = document.querySelector('.section-results__calculated');
+
+let dataContainer = {
+  nameRecipe: ['Bread'],
+  servingOriginal: 2,
+  servingWish: 4,
+  ingrQuantity: 5,
+  ingrMeasure: 'cups',
+  ingrName: 'flour',
+  createInput: function() {
+    this.nameRecipe.forEach(() => {
+      let resultsItems = document.createElement('div');
+      resultsItems.textContent = this.nameRecipe;
+      console.log(this);
+    })
+  }
+}
+
+console.log(dataContainer);
+
+dataContainer.createInput(); */
+
+
