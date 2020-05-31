@@ -141,43 +141,43 @@ function addRow() {
 
   // TODO: make measurements options dynamically generated in order to make the code more readable
   const measurements = {
-      volume: [
-        {name: 'Cups', value: 'cups' },
-        {name: 'Tablespoons', value: 'tablespoons'},
-        {name: 'Teaspoons', value: 'teaspoons'},
-        {name: 'Milliliters', value: 'milliliters'},
-        {name: 'Liter', value: 'liter'},
-        {name: 'Ounces', value: 'ounces'},
-        {name: 'Pints', value: 'pints'},
-        {name: 'Quarts', value: 'quarts'},
-        {name: 'Gallon', value: 'gallon'}
-     ],
-      weight: [
-        {name: 'Each', value: 'each' },
-        {name: 'Cups', value: 'cups' },
-        {name: 'Grams', value: 'grams'},
-        {name: 'Kilogram', value: 'kilogram'},
-        {name: 'Ounces', value: 'ounces'},
-        {name: 'Pounds', value: 'pounds'},
-      ]
-   };
+    volume: [
+      { name: 'Cups', value: 'cups' },
+      { name: 'Tablespoons', value: 'tablespoons' },
+      { name: 'Teaspoons', value: 'teaspoons' },
+      { name: 'Milliliters', value: 'milliliters' },
+      { name: 'Liter', value: 'liter' },
+      { name: 'Ounces', value: 'ounces' },
+      { name: 'Pints', value: 'pints' },
+      { name: 'Quarts', value: 'quarts' },
+      { name: 'Gallon', value: 'gallon' }
+    ],
+    weight: [
+      { name: 'Each', value: 'each' },
+      { name: 'Cups', value: 'cups' },
+      { name: 'Grams', value: 'grams' },
+      { name: 'Kilogram', value: 'kilogram' },
+      { name: 'Ounces', value: 'ounces' },
+      { name: 'Pounds', value: 'pounds' },
+    ]
+  };
 
   const optionVolume = document.createElement('optgroup');
   optionVolume.label = 'Volume';
   measurements.volume.forEach((measurement, index) => {
-     const optionV = document.createElement('option');
-     optionV.innerText = measurement.name;
-     optionV.value = measurement.value;
-     optionVolume.append(optionV);
+    const optionV = document.createElement('option');
+    optionV.innerText = measurement.name;
+    optionV.value = measurement.value;
+    optionVolume.append(optionV);
   });
 
   const optionWeight = document.createElement('optgroup');
   optionWeight.label = 'Weight';
   measurements.weight.forEach((measurement, index) => {
-     const optionW = document.createElement('option');
-     optionW.innerText = measurement.name;
-     optionW.value = measurement.value;
-     optionWeight.append(optionW);
+    const optionW = document.createElement('option');
+    optionW.innerText = measurement.name;
+    optionW.value = measurement.value;
+    optionWeight.append(optionW);
   });
 
 
@@ -231,7 +231,7 @@ addIngredients.addEventListener('click', addRow);
 form.addEventListener('submit', () => {
 
   let formValues = new FormData(document.forms[0]);
-//let originalServingsValue = formValues.get('originalServings');
+  //let originalServingsValue = formValues.get('originalServings');
   let measureValue = formValues.get('measure');
   let ingredientValue = formValues.get('ingredient');
 
@@ -243,7 +243,7 @@ form.addEventListener('submit', () => {
     document.querySelector('.section-results__content').append(recipe);
   }
 
-  if (Number(needsToServe.value) != 0 || needsToServe.value !== null ) {
+  if (Number(needsToServe.value) != 0 || needsToServe.value !== null) {
 
     let needsToServeValue = formValues.get('needsToServe');
     let wishServings = document.createElement('p');
@@ -251,67 +251,45 @@ form.addEventListener('submit', () => {
     document.querySelector('.section-results__content').append(wishServings);
   }
 
+  const ingredientsList = document.createElement('ul');
+  ingredientsList.setAttribute('class', 'result-ingredients-list')
+  Array.from(ingredients).forEach(ingredient => {
+    const ingredientListItem = document.createElement('li');
 
-  if (ingredients[0].value !== '' || ingredients[0].value !== null ) {
+    const ingredientQuantity = ingredient.querySelector('.quantity').value;
+    const ingredientQuantityNode = document.createElement('span');
+    ingredientQuantityNode.innerText = ingredientQuantity;
+    // ingredientMeasureNode.classList.add('ingredient-quantity');
+    ingredientListItem.appendChild(ingredientQuantityNode);
 
-    let quantity = document.getElementsByClassName('quantity');
-    quantity = formValues.get('quantity');
-    let quantities = document.createElement('li');
-    quantities.textContent = quantity;
+    const ingredientMeasure = ingredient.querySelector('.measure').value;
+    const ingredientMeasureNode = document.createElement('span')
+    ingredientMeasureNode.innerText = ingredientMeasure;
+    // ingredientMeasureNode.classList.add('ingredient-measure');
+    ingredientListItem.appendChild(ingredientMeasureNode);
 
-    document.querySelector('.section-results__content').append(quantities);
-    quantities.append(' ' + measureValue + ' ' + ingredientValue);
+    const ingredientName = ingredient.querySelector('.ingredient').value;
+    const ingredientNameNode = document.createElement('span');
+    ingredientNameNode.innerText = ingredientName;
+    // ingredientMeasureNode.classList.add('ingredient-name');
+    ingredientListItem.appendChild(ingredientNameNode);
 
-  }
+    ingredientsList.appendChild(ingredientListItem);
+  });
 
+  document.querySelector('.section-results__content').append(ingredientsList);
 
+  // if (ingredients[0].value !== '' || ingredients[0].value !== null ) {
+
+  //   let quantity = document.getElementsByClassName('quantity');
+  //   quantity = formValues.get('quantity');
+  //   let quantities = document.createElement('li');
+  //   quantities.textContent = quantity;
+
+  //   document.querySelector('.section-results__content').append(quantities);
+  //   quantities.append(' ' + measureValue + ' ' + ingredientValue);
+
+  // }
 });
-
-
-// const object = {
-//   name: 'Milos',
-//   age: 28,
-//   hobby: 'plyaing guitar'
-// };
-
-// const objString = JSON.stringify(object);
-
-// console.log(JSON.parse(objString));
-
-
-
-/* let dataContainer = {
-  "nameRecipe": "Bread",
-  "servingOriginal": 2,
-  "servingWish": 4,
-  "ingrQuantity": 5,
-  "ingrMeasure": "cups",
-  "ingrName": "flour"
-}
-
-
-const objString = JSON.stringify(dataContainer);
-console.log(objString); */
-/* const sectionResults = document.querySelector('.section-results__calculated');
-
-let dataContainer = {
-  nameRecipe: ['Bread'],
-  servingOriginal: 2,
-  servingWish: 4,
-  ingrQuantity: 5,
-  ingrMeasure: 'cups',
-  ingrName: 'flour',
-  createInput: function() {
-    this.nameRecipe.forEach(() => {
-      let resultsItems = document.createElement('div');
-      resultsItems.textContent = this.nameRecipe;
-      console.log(this);
-    })
-  }
-}
-
-console.log(dataContainer);
-
-dataContainer.createInput(); */
 
 
