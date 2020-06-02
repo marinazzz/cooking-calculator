@@ -317,3 +317,10 @@ button#clear {
     min-height: 50rem;
 }
 
+/*Section results*/
+
+.ingredient-quantity,
+.ingredient-measure {
+    padding-right: 0.5rem;
+}
+

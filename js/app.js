@@ -49,27 +49,174 @@ Array.from(ingredients).forEach((ingredient) => {
 });
 
 
+
+function calculate(e) {
+
+  e.preventDefault();
+
+
+  function validate() {
+    //e.preventDefault();
+
+    /*  const validationObj = {
+       recipeName: false,
+       servings: false,
+       needsToServe: false,
+       ingredients: [
+         {
+           quantity: false,
+           measurement: false,
+           ingredientName: false
+         }
+       ]
+     }; */
+
+    if (recipeName.value === '' || recipeName.value === null) {
+      recipeName.classList.add('invalid');
+    } else {
+      recipeName.classList.remove('invalid');
+      //validationObj.recipeName = true;
+    }
+
+    if (Number(servings.value) <= 0 || servings.value === null) {
+      servings.classList.add('invalid');
+    } else {
+      servings.classList.remove('invalid');
+      //validationObj.servings = true;
+
+    }
+
+    if (Number(needsToServe.value) <= 0 || needsToServe.value === null) {
+      needsToServe.classList.add('invalid');
+    } else {
+      needsToServe.classList.remove('invalid');
+      //validationObj.needsToServe = true;
+
+    }
+
+    const ingredients = Array.from(document.getElementsByClassName('ingredients-items__inputs'));
+    ingredients.forEach((ingredient, index) => {
+      const quantity = ingredient.querySelector('.quantity');
+      if (Number(quantity.value) <= 0 || quantity.value === null) {
+        quantity.classList.add('invalidBorder');
+      } else {
+        //validationObj.ingredients[0] = true;
+      }
+
+      const measurement = ingredient.querySelector('.measure');
+      if (document.querySelector('option').selected) {
+        measurement.classList.add('invalidBorder');
+      } else {
+        //validationObj.ingredients[1] = true;
+      }
+
+      const ingredientName = ingredient.querySelector('.ingredient');
+      if (ingredientName.value === '' || ingredientName.value === null) {
+        ingredientName.classList.add('invalidBorder')
+      } else {
+        //validationObj.ingredients[2] = true;
+      }
+
+      //const formValid = validationObj.recipeName && validationObj.servings && validationObj.ingredients;
+      //return formValid;
+
+    });
+  };
+
+  function getRecipe() {
+
+    const formValues = new FormData(document.forms[0]);
+    //let originalServingsValue = formValues.get('originalServings');
+
+    let recipeTitle = formValues.get('recipeName');
+    const recipeNode = document.createElement('h3');
+    recipeNode.innerText = recipeTitle;
+    document.querySelector('.section-results__content').append(recipeNode);
+
+
+    let servingTitle = formValues.get('needsToServe');
+    const servingTitleNode = document.createElement('p');
+    servingTitleNode.innerText = 'Serves for:' + ' ' + servingTitle;
+    document.querySelector('.section-results__content').append(servingTitleNode);
+
+    const ingredientsList = document.createElement('ul');
+    ingredientsList.setAttribute('class', 'result-ingredients-list')
+    Array.from(ingredients).forEach(ingredient => {
+      const ingredientListItem = document.createElement('li');
+
+      const ingredientQuantity = ingredient.querySelector('.quantity').value;
+      const ingredientQuantityNode = document.createElement('span');
+      ingredientQuantityNode.innerText = ingredientQuantity;
+      ingredientQuantityNode.classList.add('ingredient-quantity');
+      ingredientListItem.appendChild(ingredientQuantityNode);
+
+      const ingredientMeasure = ingredient.querySelector('.measure').value;
+      const ingredientMeasureNode = document.createElement('span')
+      ingredientMeasureNode.innerText = ingredientMeasure;
+      ingredientMeasureNode.classList.add('ingredient-measure');
+      ingredientListItem.appendChild(ingredientMeasureNode);
+
+      const ingredientName = ingredient.querySelector('.ingredient').value;
+      const ingredientNameNode = document.createElement('span');
+      ingredientNameNode.innerText = ingredientName;
+      // ingredientNameNode.classList.add('ingredient-name');
+      ingredientListItem.appendChild(ingredientNameNode);
+
+      ingredientsList.appendChild(ingredientListItem);
+    });
+    document.querySelector('.section-results__content').append(ingredientsList);
+  };
+
+  validate();
+
+  getRecipe();
+
+};
+
+form.addEventListener('submit', calculate);
+
+
+
 //submit form validation
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+/* const validate = (e) => {
+
+  e.preventDefault();
+
+  const validationObj = {
+    recipeName: false,
+    servings: false,
+    needsToServe: false,
+    ingredients: [
+      {
+        quantity: false,
+        measurement: false,
+        ingredientName: false
+      }
+    ]
+  };
 
   if (recipeName.value === '' || recipeName.value === null) {
     recipeName.classList.add('invalid');
   } else {
     recipeName.classList.remove('invalid');
+    validationObj.recipeName = true;
   }
 
   if (Number(servings.value) <= 0 || servings.value === null) {
     servings.classList.add('invalid');
   } else {
     servings.classList.remove('invalid');
+    validationObj.servings = true;
+
   }
 
   if (Number(needsToServe.value) <= 0 || needsToServe.value === null) {
     needsToServe.classList.add('invalid');
   } else {
     needsToServe.classList.remove('invalid');
+    validationObj.needsToServe = true;
+
   }
 
   const ingredients = Array.from(document.getElementsByClassName('ingredients-items__inputs'));
@@ -77,38 +224,94 @@ form.addEventListener('submit', (event) => {
     const quantity = ingredient.querySelector('.quantity');
     if (Number(quantity.value) <= 0 || quantity.value === null) {
       quantity.classList.add('invalidBorder');
+    } else {
+      validationObj.ingredients[0] = true;
     }
 
     const measurement = ingredient.querySelector('.measure');
-    if (measurement.value === '' || measurement.value === null) {
-      measurement.classList.add('invalidBorder')
+    if (document.querySelector('option').selected) {
+      measurement.classList.add('invalidBorder');
+    } else {
+      validationObj.ingredients[1] = true;
     }
 
     const ingredientName = ingredient.querySelector('.ingredient');
     if (ingredientName.value === '' || ingredientName.value === null) {
       ingredientName.classList.add('invalidBorder')
+    } else {
+      validationObj.ingredients[2] = true;
     }
+
+    const formValid = validationObj.recipeName && validationObj.servings && validationObj.ingredients;
+    return formValid;
+
   });
 
-});
+  getRecipe();
+
+};
+
+
+let recipeResult = function getRecipe() {
+
+  const formValues = new FormData(document.forms[0]);
+  //let originalServingsValue = formValues.get('originalServings');
+
+    let recipeTitle = formValues.get('recipeName');
+    const recipeNode = document.createElement('h3');
+    recipeNode.innerText = recipeTitle;
+    document.querySelector('.section-results__content').append(recipeNode);
+
+
+    let servingTitle = formValues.get('needsToServe');
+    const servingTitleNode = document.createElement('p');
+    servingTitleNode.innerText = 'Serves for:' + ' ' + servingTitle;
+    document.querySelector('.section-results__content').append(servingTitleNode);
+
+    const ingredientsList = document.createElement('ul');
+    ingredientsList.setAttribute('class', 'result-ingredients-list')
+    Array.from(ingredients).forEach(ingredient => {
+      const ingredientListItem = document.createElement('li');
+
+      const ingredientQuantity = ingredient.querySelector('.quantity').value;
+      const ingredientQuantityNode = document.createElement('span');
+      ingredientQuantityNode.innerText = ingredientQuantity;
+      ingredientQuantityNode.classList.add('ingredient-quantity');
+      ingredientListItem.appendChild(ingredientQuantityNode);
+
+      const ingredientMeasure = ingredient.querySelector('.measure').value;
+      const ingredientMeasureNode = document.createElement('span')
+      ingredientMeasureNode.innerText = ingredientMeasure;
+      ingredientMeasureNode.classList.add('ingredient-measure');
+      ingredientListItem.appendChild(ingredientMeasureNode);
+
+      const ingredientName = ingredient.querySelector('.ingredient').value;
+      const ingredientNameNode = document.createElement('span');
+      ingredientNameNode.innerText = ingredientName;
+      // ingredientNameNode.classList.add('ingredient-name');
+      ingredientListItem.appendChild(ingredientNameNode);
+
+      ingredientsList.appendChild(ingredientListItem);
+    });
+    document.querySelector('.section-results__content').append(ingredientsList);
+
+  };
+
+
+form.addEventListener('submit', validate);
+ */
+
 
 //add new ingredients fields after button add is clicked
 
-
-
-//1.get add button
 const addIngredients = document.getElementById('addIngredients');
 
-//2.create function for add row every time clicks add button
 function addRow() {
-  //get parent node
+
   const ingredientsItems = document.querySelector('.ingredients-items');
 
-  //create container items
   const ingredientInputs = document.createElement('div');
   ingredientInputs.classList.add('ingredients-items__inputs');
-
-  //create elements quantity
 
   const inputContainer = document.createElement('div');
   inputContainer.classList.add('input-container--ingredients', 'input-container--ingredients-quantity');
@@ -117,8 +320,6 @@ function addRow() {
   inputQuantity.classList.add('quantity');
   inputQuantity.placeholder = 'Qty';
   inputQuantity.setAttribute('type', 'number');
-
-  //append input on inputs container
   inputContainer.appendChild(inputQuantity);
 
   inputQuantity.addEventListener('input', () => {
@@ -127,9 +328,6 @@ function addRow() {
     }
   });
 
-
-
-  //create select element for measure
   const containerSelect = document.createElement('div');
   containerSelect.classList.add('input-container--ingredients');
 
@@ -139,26 +337,25 @@ function addRow() {
   const optionSelect = document.createElement('option');
   optionSelect.label = 'Select type';
 
-  // TODO: make measurements options dynamically generated in order to make the code more readable
   const measurements = {
     volume: [
       { name: 'Cups', value: 'cups' },
-      { name: 'Tablespoons', value: 'tablespoons' },
-      { name: 'Teaspoons', value: 'teaspoons' },
-      { name: 'Milliliters', value: 'milliliters' },
-      { name: 'Liter', value: 'liter' },
-      { name: 'Ounces', value: 'ounces' },
-      { name: 'Pints', value: 'pints' },
-      { name: 'Quarts', value: 'quarts' },
-      { name: 'Gallon', value: 'gallon' }
+      { name: 'Tablespoons', value: 'Tbsp' },
+      { name: 'Teaspoons', value: 'tsp' },
+      { name: 'Milliliters', value: 'ml' },
+      { name: 'Liter', value: 'L' },
+      { name: 'Ounces', value: 'oz' },
+      { name: 'Pints', value: 'pt' },
+      { name: 'Quarts', value: 'qt' },
+      { name: 'Gallon', value: 'gal' }
     ],
     weight: [
-      { name: 'Each', value: 'each' },
+      { name: 'Each', value: '' },
       { name: 'Cups', value: 'cups' },
-      { name: 'Grams', value: 'grams' },
-      { name: 'Kilogram', value: 'kilogram' },
-      { name: 'Ounces', value: 'ounces' },
-      { name: 'Pounds', value: 'pounds' },
+      { name: 'Grams', value: 'g' },
+      { name: 'Kilogram', value: 'kg' },
+      { name: 'Ounces', value: 'oz' },
+      { name: 'Pounds', value: 'lb' },
     ]
   };
 
@@ -181,9 +378,7 @@ function addRow() {
   });
 
 
-  //append on select element
   select.append(optionSelect, optionVolume, optionWeight);
-  //append all on container select
   containerSelect.append(select);
 
   select.addEventListener('change', () => {
@@ -192,7 +387,6 @@ function addRow() {
     }
   });
 
-  //create input elements for ingredient
 
   const ingredientInputContainer = document.createElement('div');
   ingredientInputContainer.classList.add('input-container--ingredients', 'input-container--ingredients-ingredient');
@@ -203,7 +397,6 @@ function addRow() {
   inputIngredient.placeholder = 'Ingredient';
   inputIngredient.setAttribute('type', 'text');
 
-  //append input on container div
   ingredientInputContainer.appendChild(inputIngredient);
 
   inputIngredient.addEventListener('input', () => {
@@ -212,84 +405,8 @@ function addRow() {
     }
   });
 
-  //append all fields on ingredient inputs div
   ingredientInputs.append(inputContainer, containerSelect, ingredientInputContainer);
-  //append all elements on parent ingredients items
   ingredientsItems.append(ingredientInputs);
 }
 
-//3.add event listener on add button
 addIngredients.addEventListener('click', addRow);
-
-
-
-//TODO: on submit get data from all inputs
-
-//BUG: every submit creates elements, needs to create elements only when inputs have data,
-//      if statment is not good
-
-form.addEventListener('submit', () => {
-
-  let formValues = new FormData(document.forms[0]);
-  //let originalServingsValue = formValues.get('originalServings');
-  let measureValue = formValues.get('measure');
-  let ingredientValue = formValues.get('ingredient');
-
-  if (recipeName.value === '' || recipeName.value === null) {
-
-    let recipeValue = formValues.get('recipeName');
-    let recipe = document.createElement('h3');
-    recipe.textContent = recipeValue;
-    document.querySelector('.section-results__content').append(recipe);
-  }
-
-  if (Number(needsToServe.value) != 0 || needsToServe.value !== null) {
-
-    let needsToServeValue = formValues.get('needsToServe');
-    let wishServings = document.createElement('p');
-    wishServings.textContent = 'Serves for:' + ' ' + needsToServeValue;
-    document.querySelector('.section-results__content').append(wishServings);
-  }
-
-  const ingredientsList = document.createElement('ul');
-  ingredientsList.setAttribute('class', 'result-ingredients-list')
-  Array.from(ingredients).forEach(ingredient => {
-    const ingredientListItem = document.createElement('li');
-
-    const ingredientQuantity = ingredient.querySelector('.quantity').value;
-    const ingredientQuantityNode = document.createElement('span');
-    ingredientQuantityNode.innerText = ingredientQuantity;
-    // ingredientMeasureNode.classList.add('ingredient-quantity');
-    ingredientListItem.appendChild(ingredientQuantityNode);
-
-    const ingredientMeasure = ingredient.querySelector('.measure').value;
-    const ingredientMeasureNode = document.createElement('span')
-    ingredientMeasureNode.innerText = ingredientMeasure;
-    // ingredientMeasureNode.classList.add('ingredient-measure');
-    ingredientListItem.appendChild(ingredientMeasureNode);
-
-    const ingredientName = ingredient.querySelector('.ingredient').value;
-    const ingredientNameNode = document.createElement('span');
-    ingredientNameNode.innerText = ingredientName;
-    // ingredientMeasureNode.classList.add('ingredient-name');
-    ingredientListItem.appendChild(ingredientNameNode);
-
-    ingredientsList.appendChild(ingredientListItem);
-  });
-
-  document.querySelector('.section-results__content').append(ingredientsList);
-
-  // if (ingredients[0].value !== '' || ingredients[0].value !== null ) {
-
-  //   let quantity = document.getElementsByClassName('quantity');
-  //   quantity = formValues.get('quantity');
-  //   let quantities = document.createElement('li');
-  //   quantities.textContent = quantity;
-
-  //   document.querySelector('.section-results__content').append(quantities);
-  //   quantities.append(' ' + measureValue + ' ' + ingredientValue);
-
-  // }
-});
-
-
