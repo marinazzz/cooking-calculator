@@ -129,18 +129,34 @@ function validateForm() {
 function outputRecipe() {
 
   const formValues = new FormData(document.forms[0]);
-  //let originalServingsValue = formValues.get('originalServings');
+  const originalServingsValue = formValues.get('originalServings');
+  const resultContainer = document.querySelector('.section-results__content');
 
   let recipeTitle = formValues.get('recipeName');
   const recipeNode = document.createElement('h3');
   recipeNode.innerText = recipeTitle;
-  document.querySelector('.section-results__content').append(recipeNode);
+  resultContainer.append(recipeNode);
 
+  if (recipeNode) {
+    recipeName.addEventListener('change', function() {
+      while (resultContainer.firstChild) {
+        resultContainer.removeChild(resultContainer.firstChild);
+      }
+    })
+  }
 
   let servingTitle = formValues.get('needsToServe');
   const servingTitleNode = document.createElement('p');
   servingTitleNode.innerText = 'Serves for:' + ' ' + servingTitle;
-  document.querySelector('.section-results__content').append(servingTitleNode);
+  resultContainer.append(servingTitleNode);
+
+  if (servingTitleNode) {
+    needsToServe.addEventListener('change', function() {
+      while (resultContainer.firstChild) {
+        resultContainer.removeChild(resultContainer.firstChild);
+      }
+    })
+  }
 
   const ingredientsList = document.createElement('ul');
   ingredientsList.setAttribute('class', 'result-ingredients-list')
@@ -153,20 +169,46 @@ function outputRecipe() {
     ingredientQuantityNode.classList.add('ingredient-quantity');
     ingredientListItem.appendChild(ingredientQuantityNode);
 
+    if (ingredientQuantityNode) {
+      document.querySelector('input.quantity').addEventListener('change', function() {
+        while (resultContainer.firstChild) {
+          resultContainer.removeChild(resultContainer.firstChild);
+        }
+      })
+    }
+
     const ingredientMeasure = ingredient.querySelector('.measure').value;
     const ingredientMeasureNode = document.createElement('span')
     ingredientMeasureNode.innerText = ingredientMeasure;
     ingredientMeasureNode.classList.add('ingredient-measure');
     ingredientListItem.appendChild(ingredientMeasureNode);
 
+    if (ingredientMeasureNode) {
+      document.querySelector('.measure').addEventListener('change', function() {
+        while (resultContainer.firstChild) {
+          resultContainer.removeChild(resultContainer.firstChild);
+        }
+      })
+    }
+
+
     const ingredientName = ingredient.querySelector('.ingredient').value;
     const ingredientNameNode = document.createElement('span');
     ingredientNameNode.innerText = ingredientName;
     ingredientListItem.appendChild(ingredientNameNode);
 
+    if (ingredientNameNode) {
+      document.querySelector('.ingredient').addEventListener('change', function() {
+        while (resultContainer.firstChild) {
+          resultContainer.removeChild(resultContainer.firstChild);
+        }
+      })
+    }
+
     ingredientsList.appendChild(ingredientListItem);
   });
-  document.querySelector('.section-results__content').append(ingredientsList);
+  resultContainer.append(ingredientsList);
+
 }
 
 form.addEventListener('submit', function (event) {
@@ -202,6 +244,7 @@ function addRow() {
       inputQuantity.classList.remove('invalidBorder');
     }
   });
+
 
   const containerSelect = document.createElement('div');
   containerSelect.classList.add('input-container--ingredients');
