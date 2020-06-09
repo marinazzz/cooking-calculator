@@ -126,10 +126,11 @@ function validateForm() {
   return formValid;
 }
 
+
+
 function outputRecipe() {
 
   const formValues = new FormData(document.forms[0]);
-  const originalServingsValue = formValues.get('originalServings');
   const resultContainer = document.querySelector('.section-results__content');
 
   let recipeTitle = formValues.get('recipeName');
@@ -137,12 +138,14 @@ function outputRecipe() {
   recipeNode.innerText = recipeTitle;
   resultContainer.append(recipeNode);
 
+  function removeElement () {
+    while (resultContainer.firstChild) {
+      resultContainer.removeChild(resultContainer.firstChild);
+    }
+  }
+
   if (recipeNode) {
-    recipeName.addEventListener('change', function() {
-      while (resultContainer.firstChild) {
-        resultContainer.removeChild(resultContainer.firstChild);
-      }
-    })
+    recipeName.addEventListener('change', removeElement)
   }
 
   let servingTitle = formValues.get('needsToServe');
@@ -151,11 +154,11 @@ function outputRecipe() {
   resultContainer.append(servingTitleNode);
 
   if (servingTitleNode) {
-    needsToServe.addEventListener('change', function() {
-      while (resultContainer.firstChild) {
-        resultContainer.removeChild(resultContainer.firstChild);
-      }
-    })
+    needsToServe.addEventListener('change', removeElement);
+  }
+
+  if (servings) {
+    servings.addEventListener('change', removeElement);
   }
 
   const ingredientsList = document.createElement('ul');
@@ -164,31 +167,42 @@ function outputRecipe() {
     const ingredientListItem = document.createElement('li');
 
     const ingredientQuantity = ingredient.querySelector('.quantity').value;
-    const ingredientQuantityNode = document.createElement('span');
-    ingredientQuantityNode.innerText = ingredientQuantity;
+    let ingredientQuantityNode = document.createElement('span');
+
+
+    let formula = formValues.get('needsToServe') / formValues.get('originalServings');
+
+    if (formValues.get('originalServings') && formValues.get('needsToServe')) {
+      ingredientQuantityNode.textContent = ingredientQuantity * formula;
+    }
+
     ingredientQuantityNode.classList.add('ingredient-quantity');
+
+    // TODO: get quantity number to 2 decimals
+    // BUG: toFixed(2) turns NaN
+    Number(ingredientQuantityNode).toFixed(2);
+
+    //parseFloat(ingredientQuantityNode).toFixed(2);
+
     ingredientListItem.appendChild(ingredientQuantityNode);
 
+
+
+    // TODO:  change event fires when the value of an <input> and <select> element has been changed
+    // BUG: event doesn't fires when the values of new created <input> and <select> elements has been changed
     if (ingredientQuantityNode) {
-      document.querySelector('input.quantity').addEventListener('change', function() {
-        while (resultContainer.firstChild) {
-          resultContainer.removeChild(resultContainer.firstChild);
-        }
-      })
+      document.querySelector('input.quantity').addEventListener('change', removeElement);
     }
 
     const ingredientMeasure = ingredient.querySelector('.measure').value;
-    const ingredientMeasureNode = document.createElement('span')
+    let ingredientMeasureNode = document.createElement('span');
     ingredientMeasureNode.innerText = ingredientMeasure;
     ingredientMeasureNode.classList.add('ingredient-measure');
     ingredientListItem.appendChild(ingredientMeasureNode);
 
+
     if (ingredientMeasureNode) {
-      document.querySelector('.measure').addEventListener('change', function() {
-        while (resultContainer.firstChild) {
-          resultContainer.removeChild(resultContainer.firstChild);
-        }
-      })
+      document.querySelector('.measure').addEventListener('change', removeElement);
     }
 
 
@@ -198,24 +212,28 @@ function outputRecipe() {
     ingredientListItem.appendChild(ingredientNameNode);
 
     if (ingredientNameNode) {
-      document.querySelector('.ingredient').addEventListener('change', function() {
-        while (resultContainer.firstChild) {
-          resultContainer.removeChild(resultContainer.firstChild);
-        }
-      })
+      document.querySelector('.ingredient').addEventListener('change', removeElement);
     }
 
     ingredientsList.appendChild(ingredientListItem);
   });
+
   resultContainer.append(ingredientsList);
 
 }
+
 
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
   if (validateForm()) {
     outputRecipe();
+
+  //adds fontawesome print button
+
+    const button = document.querySelector('.recipe-card__print');
+    button.innerHTML = '<i class="fa fa-print" aria-hidden="true"></i>';
+
   }
 });
 
@@ -328,3 +346,4 @@ function addRow() {
 }
 
 addIngredients.addEventListener('click', addRow);
+
