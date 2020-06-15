@@ -3,6 +3,7 @@ const recipeName = document.querySelector('input[name="recipeName"]');
 const servings = document.querySelector('input[name="originalServings"]');
 const needsToServe = document.querySelector('input[name="needsToServe"]');
 const ingredients = document.getElementsByClassName('ingredients-items__inputs');
+const defaultHeading = document.querySelector('.section-results__title');
 
 
 //removes class after field is filled out
@@ -127,123 +128,8 @@ function validateForm() {
 }
 
 
-
-function outputRecipe() {
-
-  const formValues = new FormData(document.forms[0]);
-  const resultContainer = document.querySelector('.section-results__content');
-
-  let recipeTitle = formValues.get('recipeName');
-  const recipeNode = document.createElement('h3');
-  recipeNode.innerText = recipeTitle;
-  resultContainer.append(recipeNode);
-
-  function removeElement () {
-    while (resultContainer.firstChild) {
-      resultContainer.removeChild(resultContainer.firstChild);
-    }
-  }
-
-  if (recipeNode) {
-    recipeName.addEventListener('change', removeElement)
-  }
-
-  let servingTitle = formValues.get('needsToServe');
-  const servingTitleNode = document.createElement('p');
-  servingTitleNode.innerText = 'Serves for:' + ' ' + servingTitle;
-  resultContainer.append(servingTitleNode);
-
-  if (servingTitleNode) {
-    needsToServe.addEventListener('change', removeElement);
-  }
-
-  if (servings) {
-    servings.addEventListener('change', removeElement);
-  }
-
-  const ingredientsList = document.createElement('ul');
-  ingredientsList.setAttribute('class', 'result-ingredients-list')
-  Array.from(ingredients).forEach(ingredient => {
-    const ingredientListItem = document.createElement('li');
-
-    const ingredientQuantity = ingredient.querySelector('.quantity').value;
-    let ingredientQuantityNode = document.createElement('span');
-
-
-    let formula = formValues.get('needsToServe') / formValues.get('originalServings');
-
-    if (formValues.get('originalServings') && formValues.get('needsToServe')) {
-      ingredientQuantityNode.textContent = ingredientQuantity * formula;
-    }
-
-    ingredientQuantityNode.classList.add('ingredient-quantity');
-
-    // TODO: get quantity number to 2 decimals
-    // BUG: toFixed(2) turns NaN
-    Number(ingredientQuantityNode).toFixed(2);
-
-    //parseFloat(ingredientQuantityNode).toFixed(2);
-
-    ingredientListItem.appendChild(ingredientQuantityNode);
-
-
-
-    // TODO:  change event fires when the value of an <input> and <select> element has been changed
-    // BUG: event doesn't fires when the values of new created <input> and <select> elements has been changed
-    if (ingredientQuantityNode) {
-      document.querySelector('input.quantity').addEventListener('change', removeElement);
-    }
-
-    const ingredientMeasure = ingredient.querySelector('.measure').value;
-    let ingredientMeasureNode = document.createElement('span');
-    ingredientMeasureNode.innerText = ingredientMeasure;
-    ingredientMeasureNode.classList.add('ingredient-measure');
-    ingredientListItem.appendChild(ingredientMeasureNode);
-
-
-    if (ingredientMeasureNode) {
-      document.querySelector('.measure').addEventListener('change', removeElement);
-    }
-
-
-    const ingredientName = ingredient.querySelector('.ingredient').value;
-    const ingredientNameNode = document.createElement('span');
-    ingredientNameNode.innerText = ingredientName;
-    ingredientListItem.appendChild(ingredientNameNode);
-
-    if (ingredientNameNode) {
-      document.querySelector('.ingredient').addEventListener('change', removeElement);
-    }
-
-    ingredientsList.appendChild(ingredientListItem);
-  });
-
-  resultContainer.append(ingredientsList);
-
-}
-
-
-form.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  if (validateForm()) {
-    outputRecipe();
-
-  //adds fontawesome print button
-
-    const button = document.querySelector('.recipe-card__print');
-    button.innerHTML = '<i class="fa fa-print" aria-hidden="true"></i>';
-
-  }
-});
-
-//add new ingredients fields after button add is clicked
-
-const addIngredients = document.getElementById('addIngredients');
-
+const ingredientsItems = document.querySelector('.ingredients-items');
 function addRow() {
-
-  const ingredientsItems = document.querySelector('.ingredients-items');
 
   const ingredientInputs = document.createElement('div');
   ingredientInputs.classList.add('ingredients-items__inputs');
@@ -346,4 +232,94 @@ function addRow() {
 }
 
 addIngredients.addEventListener('click', addRow);
+
+
+const recipeCalculated = document.querySelector('.section-results__content');
+
+function outputRecipe() {
+
+  const recipeTitle = document.createElement('h3');
+  recipeTitle.innerText = recipeName.value;
+
+  const servingAmount = document.createElement('p');
+  servingAmount.innerText = `Serves for: ${needsToServe.value}`;
+
+  const ingredientsList = document.createElement('ul');
+  ingredientsList.setAttribute('class', 'result-ingredients-list')
+  Array.from(ingredients).forEach(ingredient => {
+    const ingredientListItem = document.createElement('li');
+
+    const ingredientQuantity = ingredient.querySelector('.quantity').value;
+    const ingredientQuantityNode = document.createElement('span');
+    ingredientQuantityNode.innerText = ingredientQuantity;
+    ingredientQuantityNode.classList.add('ingredient-quantity');
+
+    const ingredientMeasure = ingredient.querySelector('.measure').value;
+    const ingredientMeasureNode = document.createElement('span')
+    ingredientMeasureNode.innerText = ingredientMeasure;
+    ingredientMeasureNode.classList.add('ingredient-measure');
+
+    const ingredientName = ingredient.querySelector('.ingredient').value;
+    const ingredientNameNode = document.createElement('span');
+    ingredientNameNode.innerText = ingredientName;
+
+    let conversionFormula = needsToServe.value / servings.value;
+    ingredientQuantityNode.textContent = ingredientQuantity * conversionFormula;
+
+    ingredientListItem.append(ingredientQuantityNode, ingredientMeasureNode, ingredientNameNode);
+    ingredientsList.appendChild(ingredientListItem);
+  });
+
+   recipeCalculated.append(recipeTitle, servingAmount, ingredientsList);
+}
+
+
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  if (validateForm()) {
+    outputRecipe();
+    removeDefaultHeading();
+    printRecipe();
+    roundDecimal();
+  }
+});
+
+function removeDefaultHeading() {
+  defaultHeading.innerHTML='';
+}
+
+function resetRecipe(){
+  recipeCalculated.innerHTML='';
+}
+form.addEventListener('reset', resetRecipe);
+
+
+function printRecipe() {
+  const printIcon = document.createElement('a');
+  printIcon.innerHTML = '<i class="fa fa-print" aria-hidden="true"></i>';
+  printIcon.classList.add('fas');
+
+  recipeCalculated.appendChild(printIcon);
+
+  printIcon.addEventListener('click', () => window.print());
+}
+
+
+// TODO: get quantity number to 2 decimals
+    // BUG: function doesn't work, when logging on console shows NaN
+function roundDecimal(amount) {
+  return Number.parseFloat(amount).toFixed(2);
+}
+
+let quantityIngredient = document.getElementsByClassName('ingredient-quantity').value;
+
+roundDecimal(quantityIngredient);
+
+//function on change remove elements
+/* function removeElement (element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+} */
 

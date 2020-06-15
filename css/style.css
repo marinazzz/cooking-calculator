@@ -24,7 +24,7 @@ body {
     color: var(--text-secondary-on-light);
 }
 
-h2, h3, h4, p {
+h2, h3, h4, p, span {
     letter-spacing: 0.1rem;
 }
 
@@ -311,7 +311,7 @@ button#clear {
 /*Default section before entering ingredients*/
 
 .section-results--background {
-    background-image: url("../images/clipart-for-cooking-calculator-mz.png");
+    background-image: url("../images/cooking-calculator-v2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 50rem;
