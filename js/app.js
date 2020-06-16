@@ -5,65 +5,7 @@ const needsToServe = document.querySelector('input[name="needsToServe"]');
 const ingredients = document.getElementsByClassName('ingredients-items__inputs');
 const defaultHeading = document.querySelector('.section-results__title');
 
-
-//removes class after field is filled out
-recipeName.addEventListener('input', () => {
-  if (recipeName.classList.contains('invalid') && recipeName.value !== '') {
-    recipeName.classList.remove('invalid');
-  }
-});
-
-servings.addEventListener('input', () => {
-  if (servings.classList.contains('invalid') && servings.value !== '') {
-    servings.classList.remove('invalid');
-  }
-});
-
-needsToServe.addEventListener('input', () => {
-  if (needsToServe.classList.contains('invalid') && needsToServe.value !== '') {
-    needsToServe.classList.remove('invalid');
-  }
-});
-
-Array.from(ingredients).forEach((ingredient) => {
-  const quantity = ingredient.querySelector('input.quantity');
-  const measure = ingredient.querySelector('select.measure');
-  const name = ingredient.querySelector('input.ingredient');
-
-  quantity.addEventListener('input', () => {
-    if (quantity.classList.contains('invalidBorder') && quantity.value !== '') {
-      quantity.classList.remove('invalidBorder');
-    }
-  });
-
-  measure.addEventListener('change', () => {
-    if (measure.classList.contains('invalidBorder')) {
-      measure.classList.remove('invalidBorder');
-    }
-  });
-
-  name.addEventListener('input', () => {
-    if (name.classList.contains('invalidBorder') && ingredient.value !== '') {
-      name.classList.remove('invalidBorder');
-    }
-  });
-});
-
-
-function validateIngredients(ingredientsValidationObj) {
-  const validIngredients = ingredientsValidationObj.map((ingredient) => {
-    return ingredient.ingredientName && (ingredient.measurement != '') && (ingredient.quantity > 0)
-  });
-  const l = validIngredients.length;
-  for (let i = 0; i < l; i++) {
-    if (validIngredients[i] === false) {
-      return false;
-    }
-  }
-  return true;
-}
-
-
+// FORM VALIDATION
 function validateForm() {
 
   const validationObj = {
@@ -127,6 +69,65 @@ function validateForm() {
   return formValid;
 }
 
+function validateIngredients(ingredientsValidationObj) {
+  const validIngredients = ingredientsValidationObj.map((ingredient) => {
+    return ingredient.ingredientName && (ingredient.measurement != '') && (ingredient.quantity > 0)
+  });
+  const l = validIngredients.length;
+  for (let i = 0; i < l; i++) {
+    if (validIngredients[i] === false) {
+      return false;
+    }
+  }
+  return true;
+}
+
+
+//removes class after field is filled out
+recipeName.addEventListener('input', () => {
+  if (recipeName.classList.contains('invalid') && recipeName.value !== '') {
+    recipeName.classList.remove('invalid');
+  }
+});
+
+servings.addEventListener('input', () => {
+  if (servings.classList.contains('invalid') && servings.value !== '') {
+    servings.classList.remove('invalid');
+  }
+});
+
+needsToServe.addEventListener('input', () => {
+  if (needsToServe.classList.contains('invalid') && needsToServe.value !== '') {
+    needsToServe.classList.remove('invalid');
+  }
+});
+
+Array.from(ingredients).forEach((ingredient) => {
+  const quantity = ingredient.querySelector('input.quantity');
+  const measure = ingredient.querySelector('select.measure');
+  const name = ingredient.querySelector('input.ingredient');
+
+  quantity.addEventListener('input', () => {
+    if (quantity.classList.contains('invalidBorder') && quantity.value !== '') {
+      quantity.classList.remove('invalidBorder');
+    }
+  });
+
+  measure.addEventListener('change', () => {
+    if (measure.classList.contains('invalidBorder')) {
+      measure.classList.remove('invalidBorder');
+    }
+  });
+
+  name.addEventListener('input', () => {
+    if (name.classList.contains('invalidBorder') && ingredient.value !== '') {
+      name.classList.remove('invalidBorder');
+    }
+  });
+});
+
+
+// FUNCTION to create elements, new input fields
 
 const ingredientsItems = document.querySelector('.ingredients-items');
 function addRow() {
@@ -148,7 +149,6 @@ function addRow() {
       inputQuantity.classList.remove('invalidBorder');
     }
   });
-
 
   const containerSelect = document.createElement('div');
   containerSelect.classList.add('input-container--ingredients');
@@ -234,6 +234,7 @@ function addRow() {
 addIngredients.addEventListener('click', addRow);
 
 
+// DISPLAY CALCULATED RECIPE
 const recipeCalculated = document.querySelector('.section-results__content');
 
 function outputRecipe() {
@@ -245,7 +246,7 @@ function outputRecipe() {
   servingAmount.innerText = `Serves for: ${needsToServe.value}`;
 
   const ingredientsList = document.createElement('ul');
-  ingredientsList.setAttribute('class', 'result-ingredients-list')
+  ingredientsList.setAttribute('class', 'result-ingredients-list');
   Array.from(ingredients).forEach(ingredient => {
     const ingredientListItem = document.createElement('li');
 
@@ -255,7 +256,7 @@ function outputRecipe() {
     ingredientQuantityNode.classList.add('ingredient-quantity');
 
     const ingredientMeasure = ingredient.querySelector('.measure').value;
-    const ingredientMeasureNode = document.createElement('span')
+    const ingredientMeasureNode = document.createElement('span');
     ingredientMeasureNode.innerText = ingredientMeasure;
     ingredientMeasureNode.classList.add('ingredient-measure');
 
@@ -263,34 +264,22 @@ function outputRecipe() {
     const ingredientNameNode = document.createElement('span');
     ingredientNameNode.innerText = ingredientName;
 
-    let conversionFormula = needsToServe.value / servings.value;
-    ingredientQuantityNode.textContent = ingredientQuantity * conversionFormula;
+    //invoke function to calculate the recipe
+    calculateRecipe(needsToServe, servings, ingredientQuantity, ingredientQuantityNode);
 
     ingredientListItem.append(ingredientQuantityNode, ingredientMeasureNode, ingredientNameNode);
     ingredientsList.appendChild(ingredientListItem);
   });
 
-   recipeCalculated.append(recipeTitle, servingAmount, ingredientsList);
+  recipeCalculated.append(recipeTitle, servingAmount, ingredientsList);
 }
-
-
-form.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  if (validateForm()) {
-    outputRecipe();
-    removeDefaultHeading();
-    printRecipe();
-    roundDecimal();
-  }
-});
 
 function removeDefaultHeading() {
-  defaultHeading.innerHTML='';
+  defaultHeading.innerHTML = '';
 }
 
-function resetRecipe(){
-  recipeCalculated.innerHTML='';
+function resetRecipe() {
+  recipeCalculated.innerHTML = '';
 }
 form.addEventListener('reset', resetRecipe);
 
@@ -305,21 +294,24 @@ function printRecipe() {
   printIcon.addEventListener('click', () => window.print());
 }
 
+//function to calculate recipe and check if need to round result on 2 decimals
+function calculateRecipe(val1, val2, amount, node) {
+  let conversionFormula = val1.value / val2.value;
+  let result = amount * conversionFormula;
 
-// TODO: get quantity number to 2 decimals
-    // BUG: function doesn't work, when logging on console shows NaN
-function roundDecimal(amount) {
-  return Number.parseFloat(amount).toFixed(2);
+  if (!Number.isInteger(result)) {
+    node.textContent = result.toFixed(2);
+  } else node.textContent = result;
+
 }
 
-let quantityIngredient = document.getElementsByClassName('ingredient-quantity').value;
+// SUBMIT LISTENER
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
 
-roundDecimal(quantityIngredient);
-
-//function on change remove elements
-/* function removeElement (element) {
-  while (element.firstChild) {
-    element.removeChild(element.firstChild);
+  if (validateForm()) {
+    outputRecipe();
+    removeDefaultHeading();
+    printRecipe();
   }
-} */
-
+});

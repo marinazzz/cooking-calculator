@@ -217,13 +217,15 @@ select:focus {
     border-bottom: 0.2rem var(--color-primary) solid;
 }
 
+::placeholder {
+    letter-spacing: 0;
+}
 
 /*select element*/
 
 select {
     align-items: center;
     font: inherit;
-    letter-spacing: 0.1rem;
     color: #303030a8;
     line-height: 1.3;
     padding: 0 1rem;
@@ -324,3 +326,22 @@ button#clear {
     padding-right: 0.5rem;
 }
 
+@media screen and (max-width: 380px) {
+    .input-container--ingredients-quantity {
+        margin-right: 0.5rem;
+        flex: 0.8;
+    }
+
+    .input-container--ingredients-ingredient {
+        margin-left: 0.5rem;
+    }
+
+    select {
+        padding: 0 0.7rem;
+    }
+
+    .section-main {
+        padding: 1.2rem;
+    }
+
+}

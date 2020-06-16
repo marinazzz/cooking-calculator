@@ -1,0 +1,19 @@
+@media print {
+    header,
+    .section-main,
+     i.fa-print {
+        display: none;
+    }
+
+    .container {
+        box-shadow: none;
+    }
+
+    body {
+        font-size: 15pt;
+        line-height: 24pt;
+        background: none;
+        color: #000;
+      }
+
+}
