@@ -5,6 +5,24 @@ const needsToServe = document.querySelector('input[name="needsToServe"]');
 const ingredients = document.getElementsByClassName('ingredients-items__inputs');
 const defaultHeading = document.querySelector('.section-results__title');
 
+// TK Ako hoces, mozes i da napravis konstruktor funkciju (ili klasu), koja ce ti da gurne ingredient objekat sa svima informacijama o sastojku u quantityArr. Kasnije mozes da koristis "destructuring" (veoma koristna stvar) u funkciji koja treba informacije o ingredientu
+
+// Arrayu sam dao ime quantityArr i ako dajemo jos druge podatke osim quantity :) mozda malo confusing
+const quantityArr = [];
+
+function IngredientDetails(name, quantity, measure) {
+  // this = Ingredient objekat kojeg pravis
+  this.name = name;
+  this.quantity = quantity;
+  this.measure = measure;
+}
+
+// Mozes i da napravis metodu na prototipu objekta, koja ce da gurne objekat u quantityArr
+IngredientDetails.prototype.push = function () {
+  // this je u tom slucaju objekat kojega si uradila
+  quantityArr.push(this);
+}
+
 // FORM VALIDATION
 function validateForm() {
 
@@ -263,6 +281,10 @@ function outputRecipe() {
     const ingredientName = ingredient.querySelector('.ingredient').value;
     const ingredientNameNode = document.createElement('span');
     ingredientNameNode.innerText = ingredientName;
+
+    // TK Tu mozes da napravis novi instance Ingredient objekta i da uzmes metodu objekta da ga gurnes u quantityArr
+    const ingredientDetails = new IngredientDetails(ingredientName, ingredientQuantity, ingredientMeasure);
+    ingredientDetails.push();
 
     //invoke function to calculate the recipe
     calculateRecipe(needsToServe, servings, ingredientQuantity, ingredientQuantityNode);
