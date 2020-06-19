@@ -5,6 +5,9 @@ const needsToServe = document.querySelector('input[name="needsToServe"]');
 const ingredients = document.getElementsByClassName('ingredients-items__inputs');
 const defaultHeading = document.querySelector('.section-results__title');
 
+// TK Ako ti treba quantity u drugoj funkciji, ne bi bilo lose da se napravi u global scope neki array/objekat, pa da tamo hranis te podace
+const quantityArr = [];
+
 // FORM VALIDATION
 function validateForm() {
 
@@ -248,21 +251,33 @@ function outputRecipe() {
   const ingredientsList = document.createElement('ul');
   ingredientsList.setAttribute('class', 'result-ingredients-list');
   Array.from(ingredients).forEach(ingredient => {
+
+    // TK U ovaj array mozes da sejvas detalj za svaki ingredient i onda ga gurnes u quantityArr (global variable)
+    const ingredientDetails = [];
+
     const ingredientListItem = document.createElement('li');
 
     const ingredientQuantity = ingredient.querySelector('.quantity').value;
+    // TK Tu dobijes quantity i pushujes ga u ingredientDetials array. Isto uradis za ostale values.
+    ingredientDetails.push(ingredientQuantity);
+
     const ingredientQuantityNode = document.createElement('span');
     ingredientQuantityNode.innerText = ingredientQuantity;
     ingredientQuantityNode.classList.add('ingredient-quantity');
 
     const ingredientMeasure = ingredient.querySelector('.measure').value;
+    ingredientDetails.push(ingredientMeasure);
     const ingredientMeasureNode = document.createElement('span');
     ingredientMeasureNode.innerText = ingredientMeasure;
     ingredientMeasureNode.classList.add('ingredient-measure');
 
     const ingredientName = ingredient.querySelector('.ingredient').value;
+    ingredientDetails.push(ingredientName);
     const ingredientNameNode = document.createElement('span');
     ingredientNameNode.innerText = ingredientName;
+
+    // TK Na kraju gurnes ingredientDetails u quantityArr
+    quantityArr.push(ingredientDetails);
 
     //invoke function to calculate the recipe
     calculateRecipe(needsToServe, servings, ingredientQuantity, ingredientQuantityNode);
