@@ -235,40 +235,44 @@ addIngredients.addEventListener('click', addRow);
 
 
 // DISPLAY CALCULATED RECIPE
+
 const recipeCalculated = document.querySelector('.section-results__content');
 
 function outputRecipe() {
 
   const recipeTitle = document.createElement('h3');
-  recipeTitle.innerText = recipeName.value;
-
   const servingAmount = document.createElement('p');
+
+  recipeTitle.innerText = recipeName.value;
   servingAmount.innerText = `Serves for: ${needsToServe.value}`;
 
   const ingredientsList = document.createElement('ul');
-  ingredientsList.setAttribute('class', 'result-ingredients-list');
   Array.from(ingredients).forEach(ingredient => {
-    const ingredientListItem = document.createElement('li');
 
     const ingredientQuantity = ingredient.querySelector('.quantity').value;
-    const ingredientQuantityNode = document.createElement('span');
-    ingredientQuantityNode.innerText = ingredientQuantity;
-    ingredientQuantityNode.classList.add('ingredient-quantity');
-
     const ingredientMeasure = ingredient.querySelector('.measure').value;
-    const ingredientMeasureNode = document.createElement('span');
-    ingredientMeasureNode.innerText = ingredientMeasure;
-    ingredientMeasureNode.classList.add('ingredient-measure');
-
     const ingredientName = ingredient.querySelector('.ingredient').value;
-    const ingredientNameNode = document.createElement('span');
-    ingredientNameNode.innerText = ingredientName;
+
+    const ingredientListItem = document.createElement('li');
+    const calculatedQuantity = document.createElement('span');
+    const ingredientMeasureDisplay = document.createElement('span');
+    const ingredientNameDisplay = document.createElement('span');
+
+    calculatedQuantity.innerText = ingredientQuantity;
+    ingredientMeasureDisplay.innerText = ingredientMeasure;
+    ingredientNameDisplay.innerText = ingredientName;
+
+    calculatedQuantity.classList.add('ingredient-quantity');
+    ingredientMeasureDisplay.classList.add('ingredient-measure');
+
+    ingredientListItem.append(calculatedQuantity, ingredientMeasureDisplay, ingredientNameDisplay);
+
+    ingredientsList.setAttribute('class', 'result-ingredients-list');
+    ingredientsList.appendChild(ingredientListItem);
 
     //invoke function to calculate the recipe
-    calculateRecipe(needsToServe, servings, ingredientQuantity, ingredientQuantityNode);
+    calculateRecipe(needsToServe, servings, ingredientQuantity, calculatedQuantity);
 
-    ingredientListItem.append(ingredientQuantityNode, ingredientMeasureNode, ingredientNameNode);
-    ingredientsList.appendChild(ingredientListItem);
   });
 
   recipeCalculated.append(recipeTitle, servingAmount, ingredientsList);
@@ -278,11 +282,16 @@ function removeDefaultHeading() {
   defaultHeading.innerHTML = '';
 }
 
-function resetRecipe() {
-  recipeCalculated.innerHTML = '';
-}
-form.addEventListener('reset', resetRecipe);
+//function to calculate recipe and check if need to round result on 2 decimals
 
+function calculateRecipe(val1, val2, amount, node) {
+  let result = val1.value / val2.value * amount;
+
+  if (!Number.isInteger(result)) {
+    node.textContent = result.toFixed(2);
+  } else node.textContent = result;
+
+}
 
 function printRecipe() {
   const printIcon = document.createElement('a');
@@ -294,24 +303,20 @@ function printRecipe() {
   printIcon.addEventListener('click', () => window.print());
 }
 
-//function to calculate recipe and check if need to round result on 2 decimals
-function calculateRecipe(val1, val2, amount, node) {
-  let conversionFormula = val1.value / val2.value;
-  let result = amount * conversionFormula;
-
-  if (!Number.isInteger(result)) {
-    node.textContent = result.toFixed(2);
-  } else node.textContent = result;
-
-}
 
 // SUBMIT LISTENER
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
   if (validateForm()) {
-    outputRecipe();
     removeDefaultHeading();
+    outputRecipe();
     printRecipe();
   }
+
 });
+
+function resetRecipe() {
+  recipeCalculated.innerHTML = '';
+}
+form.addEventListener('reset', resetRecipe);
