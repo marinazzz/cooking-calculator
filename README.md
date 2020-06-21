@@ -11,4 +11,4 @@
 
 ### Demo GitHub pages
 
-[Cooking calculator](https://github.com/marinazzz/cooking-calculator/)
+[Cooking calculator](https://marinazzz.github.io/cooking-calculator/)
