@@ -3,20 +3,17 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap"
-        rel="stylesheet">
-  <link href="css/fontawesome-free-5.13.0-web/css/all.min.css"
-        rel="stylesheet">
-  <link rel="stylesheet"
-        href="css/style.css">
-  <link rel="stylesheet"
-        href="css/style-min-width768px.css">
-  <link rel="stylesheet"
-        href="css/style-print.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon_io/site.webmanifest">
+  <link href="css/fontawesome-free-5.13.0-web/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style-min-width768px.css">
+  <link rel="stylesheet" href="css/style-print.css">
   <title>Cooking calculator</title>
 </head>
 
@@ -30,12 +27,8 @@
   </header>
   <main>
     <div class="container">
-      <!-- Main calculator form -->
       <section class="section-main">
-        <form id="form"
-              name="calculator"
-              class="section-main__form">
-          <!-- Header for calculate a recipe -->
+        <form id="form" name="calculator" class="section-main__form">
           <section>
             <header>
               <h2>Calculate a Recipe</h2>
@@ -44,60 +37,42 @@
                 you need. Fill out the information below and click Calculate to get converted
                 recipe.</p>
             </header>
-            <!-- Main inputs for recipe title and servings -->
             <div class="input-container">
-              <label for="recipeName"
-                     class="input-container__label">Recipe name:</label>
+              <label for="recipeName" class="input-container__label">Recipe name:</label>
               <div class="input-container__input-name">
-                <input type="text"
-                       id="recipeName"
-                       name="recipeName" />
+                <input type="text" id="recipeName" name="recipeName" />
                 <div class="input-container__error">This field is required</div>
               </div>
             </div>
             <div class="input-container--flex">
               <div class="input-container">
-                <label for="originalServings"
-                       class="input-container__label">Original recipe servings:</label>
+                <label for="originalServings" class="input-container__label">Original recipe servings:</label>
                 <div class="input-container__input-original">
-                  <input type="number"
-                         id="originalServings"
-                         name="originalServings" />
+                  <input type="number" id="originalServings" name="originalServings" />
                   <div class="input-container__error">This field is required</div>
                 </div>
               </div>
               <div class="input-container">
-                <label for="needsToServe"
-                       class="input-container__label">Needs to serve:</label>
+                <label for="needsToServe" class="input-container__label">Needs to serve:</label>
                 <div class="input-container__input-need">
-                  <input type="number"
-                         id="needsToServe"
-                         name="needsToServe" />
+                  <input type="number" id="needsToServe" name="needsToServe" />
                   <div class="input-container__error">This field is required</div>
                 </div>
               </div>
             </div>
           </section>
-          <!-- Header for ingredients -->
           <section>
             <header>
               <h2>Ingredients</h2>
               <p>Enter quantity, type of measurement and all ingredients of your original recipe.</p>
             </header>
-            <!-- Inputs for quantity, type of measurementand ingredient -->
             <div class="ingredients-items">
               <div class="ingredients-items__inputs">
-                <!-- Quantity -->
                 <div class="input-container--ingredients input-container--ingredients-quantity">
-                  <input type="number"
-                         class="quantity"
-                         name="quantity"
-                         placeholder="Qty." />
+                  <input type="number" class="quantity" name="quantity" placeholder="Qty." />
                 </div>
-                <!-- measurement-->
                 <div class="input-container--ingredients">
-                  <select class="measure"
-                          name="measure">
+                  <select class="measure" name="measure">
                     <option value="">Select type</option>
                     <optgroup label="Volume">
                       <option value="cups">Cups</option>
@@ -122,34 +97,23 @@
                     </optgroup>
                   </select>
                 </div>
-                <!-- Ingredient -->
                 <div class="input-container--ingredients input-container--ingredients-ingredient">
-                  <input type="text"
-                         class="ingredient"
-                         name="ingredient"
-                         placeholder="Ingredient" />
+                  <input type="text" class="ingredient" name="ingredient" placeholder="Ingredient" />
                 </div>
               </div>
             </div>
             <div class="ingredients-items__button">
-              <button type="button"
-                      id="addIngredients"
-                      class="ingredients-items__button-add">
+              <button type="button" id="addIngredients" class="ingredients-items__button-add">
                 <i class="fas fa-plus-circle"></i> Add more
               </button>
             </div>
             <div class="ingredients-items__button-wrapp">
-              <button type="submit"
-                      value="calculate"
-                      id="submit">Calculate</button>
-              <button type="reset"
-                      value="clear"
-                      id="clear">Clear</button>
+              <button type="submit" value="calculate" id="submit">Calculate</button>
+              <button type="reset" value="clear" id="clear">Clear</button>
             </div>
           </section>
         </form>
       </section>
-      <!-- Section for new converted recipe -->
       <section class="section-results section-results--background">
         <div class="section-results__default">
           <h2 class="section-results__title"> Calculated recipe will show
