@@ -189,6 +189,12 @@ function outputRecipe() {
 
   });
 
+  // check if calculated recipe is already displayed 
+  if (recipeCalculated.querySelector('h3')) {
+    recipeCalculated.removeChild(recipeCalculated.querySelector('h3'));
+    recipeCalculated.removeChild(recipeCalculated.querySelector('p'));
+    recipeCalculated.removeChild(recipeCalculated.querySelector('ul'));
+  }
   recipeCalculated.append(recipeTitle, servingAmount, ingredientsList);
 }
 
@@ -207,12 +213,17 @@ function calculateRecipe(val1, val2, amount, node) {
 function printRecipe() {
 
   let recipeContent = document.querySelector('.section-results__content');
-
   let printIcon = document.createElement('a');
+  let printScreenContent = () => window.print();
   printIcon.innerHTML = '<i class="fa fa-print fas" aria-hidden="true"></i>';
-  recipeContent.appendChild(printIcon);
 
-  printIcon.addEventListener('click', () => window.print());
+  if (recipeContent.querySelector('a')) {
+    recipeContent.removeChild(recipeContent.querySelector('a'));
+    printIcon.removeEventListener('click', printScreenContent);
+  }
+
+  recipeContent.appendChild(printIcon);
+  printIcon.addEventListener('click', printScreenContent);
 }
 
 
