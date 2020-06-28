@@ -9,7 +9,7 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
 
   if (validateForm()) {
-    removeDefaultHeading();
+    removeDefaultDisplay();
     outputRecipe();
     printRecipe();
   }
@@ -142,10 +142,16 @@ Array.from(ingredients).forEach((ingredient) => {
 });
 
 
-// FUNCTION remove default heading before calculated recipe shows
+// FUNCTION remove default display before calculated recipe shows
 
-function removeDefaultHeading() {
+function removeDefaultDisplay() {
   const defaultHeading = document.querySelector('.section-results__title');
+  const defaultBackgroundImage = document.querySelector('.section-results');
+
+  if(defaultBackgroundImage.classList.contains('section-results--background')) {
+    defaultBackgroundImage.classList.remove('section-results--background');
+  };
+
   defaultHeading.innerHTML = '';
 }
 
@@ -189,7 +195,7 @@ function outputRecipe() {
 
   });
 
-  // check if calculated recipe is already displayed 
+  // check if calculated recipe is already displayed
   if (recipeCalculated.querySelector('h3')) {
     recipeCalculated.removeChild(recipeCalculated.querySelector('h3'));
     recipeCalculated.removeChild(recipeCalculated.querySelector('p'));
